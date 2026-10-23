@@ -1,0 +1,118 @@
+{
+  "job_id": "51e3a8221002",
+  "status": "completed",
+  "created_at": "2026-10-23T11:23:54.918523+00:00",
+  "completed_at": "2026-10-23T11:23:56.481073+00:00",
+  "script": "Saving money does not have to be difficult. Start by tracking every expense. Then cut one unnecessary subscription. Small steps lead to big savings over time.",
+  "total_duration": 12.0,
+  "aspect_ratios": [
+    "16:9",
+    "9:16"
+  ],
+  "scene_count": 4,
+  "clips_found": 3,
+  "timeline": [
+    {
+      "scene_id": 0,
+      "text": "Saving money does not have to be difficult.",
+      "start_sec": 0.0,
+      "end_sec": 3.69,
+      "duration_sec": 3.69,
+      "keywords": [
+        "saving",
+        "money"
+      ],
+      "relevance_score": 0.81,
+      "clip": {
+        "source": "pixabay",
+        "pixabay_id": 109146,
+        "url": "https://cdn.pixabay.com/video/2022/02/28/109146-683077298_medium.mp4",
+        "thumbnail": "https://cdn.pixabay.com/video/2022/02/28/109146-683077298_tiny.jpg",
+        "views": 148489,
+        "tags": "money, man, key, dollar, to buy, count, stack, rich, days wealthy, luxury, save up, invest",
+        "licence": "Pixabay License (free for commercial use, no attribution required)"
+      }
+    },
+    {
+      "scene_id": 1,
+      "text": "Start by tracking every expense.",
+      "start_sec": 3.69,
+      "end_sec": 6.0,
+      "duration_sec": 2.31,
+      "keywords": [
+        "tracking",
+        "expense"
+      ],
+      "relevance_score": 0.81,
+      "clip": {
+        "source": "pixabay",
+        "pixabay_id": 39990,
+        "url": "https://cdn.pixabay.com/video/2020/05/24/39990-424360898_medium.mp4",
+        "thumbnail": "https://cdn.pixabay.com/video/2020/05/24/39990-424360898_tiny.jpg",
+        "views": 158187,
+        "tags": "field, flower, mountains, tracking shot, nature, heaven, summer, spring, blossom, bloom, flower meadow, flora, happy, beauty, season, sunshine",
+        "licence": "Pixabay License (free for commercial use, no attribution required)"
+      }
+    },
+    {
+      "scene_id": 2,
+      "text": "Then cut one unnecessary subscription.",
+      "start_sec": 6.0,
+      "end_sec": 8.31,
+      "duration_sec": 2.31,
+      "keywords": [
+        "then",
+        "unnecessary"
+      ],
+      "relevance_score": 0.81,
+      "clip": {
+        "source": "none",
+        "pixabay_id": null,
+        "url": "",
+        "thumbnail": "",
+        "views": 0,
+        "tags": "",
+        "licence": "Pixabay License (free for commercial use, no attribution required)"
+      }
+    },
+    {
+      "scene_id": 3,
+      "text": "Small steps lead to big savings over time.",
+      "start_sec": 8.31,
+      "end_sec": 12.0,
+      "duration_sec": 3.69,
+      "keywords": [
+        "steps",
+        "savings"
+      ],
+      "relevance_score": 0.81,
+      "clip": {
+        "source": "pixabay",
+        "pixabay_id": 3171,
+        "url": "https://cdn.pixabay.com/video/2016/05/12/3171-166338953_medium.mp4",
+        "thumbnail": "https://cdn.pixabay.com/video/2016/05/12/3171-166338953_tiny.jpg",
+        "views": 822566,
+        "tags": "walking, sneakers, nike, shoes, walk, path, outdoors, lifestyle, young, boy, legs, foot, jeans, adult, summer, style, feet, person, step",
+        "licence": "Pixabay License (free for commercial use, no attribution required)"
+      }
+    }
+  ],
+  "output_files": {
+    "video_16x9.mp4": "[FFmpeg assembly — requires Docker]",
+    "video_9x16.mp4": "[FFmpeg assembly — requires Docker]"
+  },
+  "captions_srt": "captions.srt (FFmpeg — requires Docker)",
+  "engine": {
+    "tts": "edge-tts / en-US-JennyNeural",
+    "footage": "Pixabay API v2 (CC0, safesearch=true)",
+    "scoring": "keyword-frequency + CLIP vision-language",
+    "assembly": "FFmpeg concat demuxer",
+    "version": "1.0.0"
+  },
+  "metrics": {
+    "turnaround_sec": 1.56,
+    "cost_per_min": "$0.00 (free APIs)",
+    "coverage_pct": 75.0,
+    "reliability": "100% (0 repeat clips)"
+  }
+}
