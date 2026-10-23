@@ -1,0 +1,9 @@
+{
+  "script": "A young entrepreneur launched a startup with nothing but an idea and a laptop. Within two years, the company raised ten million dollars in funding. Today, it serves customers in over thirty countries.",
+  "voice": "en-US-GuyNeural",
+  "aspect_ratios": ["1:1"],
+  "style": "startup entrepreneurship office modern",
+  "avoid": [],
+  "captions": {"burn_in": false, "srt": true},
+  "_description": "TC06: HARD CASE — real person mentioned ('young entrepreneur'), 1:1 square aspect"
+}

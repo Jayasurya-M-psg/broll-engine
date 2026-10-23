@@ -1,0 +1,9 @@
+{
+  "script": "The banking sector is undergoing rapid transformation. Digital payments have replaced cash for millions of customers. But questions about privacy and security remain.",
+  "voice": "en-GB-SoniaNeural",
+  "aspect_ratios": ["16:9"],
+  "style": "finance banking professional corporate",
+  "avoid": ["people's faces", "alcohol"],
+  "captions": {"burn_in": true, "srt": true},
+  "_description": "TC09: HARD CASE — 'bank' has double meaning (river bank vs financial); word 'value' avoided by safe search"
+}

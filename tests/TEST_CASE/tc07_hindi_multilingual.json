@@ -1,0 +1,9 @@
+{
+  "script": "आज हम बात करेंगे स्वास्थ्य के बारे में। नियमित व्यायाम और संतुलित आहार आपको स्वस्थ रखते हैं। हर दिन कम से कम तीस मिनट चलना चाहिए।",
+  "voice": "hi-IN-SwaraNeural",
+  "aspect_ratios": ["16:9"],
+  "style": "health wellness lifestyle",
+  "avoid": [],
+  "captions": {"burn_in": true, "srt": true},
+  "_description": "TC07: MULTILINGUAL — Hindi script, Hindi TTS voice (Outstanding level)"
+}

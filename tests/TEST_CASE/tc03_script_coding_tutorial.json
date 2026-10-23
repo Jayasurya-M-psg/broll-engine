@@ -1,0 +1,9 @@
+{
+  "script": "Python is one of the most popular programming languages in the world. Developers use it for web development, data science, and artificial intelligence. Its simple syntax makes it perfect for beginners.",
+  "voice": "en-US-JennyNeural",
+  "aspect_ratios": ["16:9"],
+  "style": "education tutorial coding",
+  "avoid": [],
+  "captions": {"burn_in": true, "srt": true},
+  "_description": "TC03: Tutorial/education, avoid faces, coding theme"
+}

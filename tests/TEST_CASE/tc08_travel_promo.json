@@ -1,0 +1,9 @@
+{
+  "script": "Travel opens your mind to new cultures and experiences. From the mountains of Nepal to the beaches of Thailand, every destination has a story to tell. Pack your bags and explore the world.",
+  "voice": "en-AU-NatashaNeural",
+  "aspect_ratios": ["16:9", "9:16"],
+  "style": "travel adventure landscape cinematic",
+  "avoid": ["alcohol", "weapons"],
+  "captions": {"burn_in": false, "srt": true},
+  "_description": "TC08: Travel promo, Australian accent, dual ratios, safety avoids"
+}

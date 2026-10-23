@@ -1,0 +1,98 @@
+{
+  "job_id": "2953cdc2c6c1",
+  "status": "completed",
+  "created_at": "2026-10-22T18:12:26.627065+00:00",
+  "script": "Saving money does not have to be difficult. Start by tracking every expense. Then cut one unnecessary subscription. Small steps lead to big savings over time.",
+  "total_duration": 12.0,
+  "audio_file": "demo_output\\narration_2953cdc2c6c1.mp3",
+  "aspect_ratios": [
+    "16:9"
+  ],
+  "scene_count": 4,
+  "clips_found": 4,
+  "timeline": [
+    {
+      "scene_id": 0,
+      "text": "Saving money does not have to be difficult.",
+      "start_sec": 0.0,
+      "end_sec": 3.69,
+      "duration_sec": 3.69,
+      "keywords": [
+        "saving",
+        "money",
+        "difficult"
+      ],
+      "clip": {
+        "source": "pixabay",
+        "pixabay_id": 109146,
+        "url": "https://cdn.pixabay.com/video/2022/02/28/109146-683077298_medium.mp4",
+        "thumbnail": "https://cdn.pixabay.com/video/2022/02/28/109146-683077298_tiny.jpg",
+        "views": 148473,
+        "tags": "money, man, key, dollar, to buy, count, stack, rich, days wealthy, luxury, save up, invest"
+      }
+    },
+    {
+      "scene_id": 1,
+      "text": "Start by tracking every expense.",
+      "start_sec": 3.69,
+      "end_sec": 6.0,
+      "duration_sec": 2.31,
+      "keywords": [
+        "tracking",
+        "expense"
+      ],
+      "clip": {
+        "source": "pixabay",
+        "pixabay_id": 39990,
+        "url": "https://cdn.pixabay.com/video/2020/05/24/39990-424360898_medium.mp4",
+        "thumbnail": "https://cdn.pixabay.com/video/2020/05/24/39990-424360898_tiny.jpg",
+        "views": 158180,
+        "tags": "field, flower, mountains, tracking shot, nature, heaven, summer, spring, blossom, bloom, flower meadow, flora, happy, beauty, season, sunshine"
+      }
+    },
+    {
+      "scene_id": 2,
+      "text": "Then cut one unnecessary subscription.",
+      "start_sec": 6.0,
+      "end_sec": 8.31,
+      "duration_sec": 2.31,
+      "keywords": [
+        "unnecessary",
+        "subscription"
+      ],
+      "clip": {
+        "source": "pixabay",
+        "pixabay_id": 48891,
+        "url": "https://cdn.pixabay.com/video/2020/09/02/48891-454346906_medium.mp4",
+        "thumbnail": "https://cdn.pixabay.com/video/2020/09/02/48891-454346906_tiny.jpg",
+        "views": 621418,
+        "tags": "youtube subscribe, like, share, comment, youtube, subscription, subscribe, social, subscribers, icon, red, button"
+      }
+    },
+    {
+      "scene_id": 3,
+      "text": "Small steps lead to big savings over time.",
+      "start_sec": 8.31,
+      "end_sec": 12.0,
+      "duration_sec": 3.69,
+      "keywords": [
+        "steps",
+        "savings"
+      ],
+      "clip": {
+        "source": "pixabay",
+        "pixabay_id": 3171,
+        "url": "https://cdn.pixabay.com/video/2016/05/12/3171-166338953_medium.mp4",
+        "thumbnail": "https://cdn.pixabay.com/video/2016/05/12/3171-166338953_tiny.jpg",
+        "views": 822495,
+        "tags": "walking, sneakers, nike, shoes, walk, path, outdoors, lifestyle, young, boy, legs, foot, jeans, adult, summer, style, feet, person, step"
+      }
+    }
+  ],
+  "engine": {
+    "tts": "edge-tts / en-US-JennyNeural",
+    "footage": "Pixabay API (safesearch=true)",
+    "scoring": "keyword-frequency heuristic (CPU fallback)",
+    "assembly": "FFmpeg concat demuxer (requires Docker for full run)"
+  }
+}

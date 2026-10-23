@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrollEngine — Job Output Viewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0d0f14;
+      --surface:  #151820;
+      --card:     #1c2030;
+      --border:   #2a2f42;
+      --accent:   #6c63ff;
+      --accent2:  #00d4aa;
+      --text:     #e8eaf0;
+      --muted:    #7a7f96;
+      --success:  #22c55e;
+      --tag-bg:   #1e2540;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 0 0 60px;
+    }
+
+    /* ── Hero header ───────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #0d0f14 0%, #14172a 50%, #0d1220 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 32px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 700px 300px at 60% -50%, rgba(108,99,255,.18), transparent);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 960px; margin: 0 auto; position: relative; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(108,99,255,.15); border: 1px solid rgba(108,99,255,.35);
+      border-radius: 999px; padding: 4px 14px;
+      font-size: 11px; font-weight: 600; letter-spacing: .08em;
+      color: #a79fff; text-transform: uppercase; margin-bottom: 18px;
+    }
+    .hero-badge span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 1.8s ease-in-out infinite; display: block; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.7)} }
+
+    h1 { font-size: 2.1rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.2; }
+    h1 span { background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub { color: var(--muted); font-size: .93rem; margin-top: 10px; line-height: 1.6; max-width: 580px; }
+
+    /* ── Stats bar ─────────────────────────────────────────── */
+    .stats-bar {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      max-width: 960px; margin: 0 auto;
+      padding: 0 32px;
+      transform: translateY(-50%);
+    }
+    .stat {
+      flex: 1; min-width: 140px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex; flex-direction: column; gap: 4px;
+      transition: border-color .2s, transform .2s;
+    }
+    .stat:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .stat-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+    .stat-value { font-size: 1.7rem; font-weight: 800; color: var(--text); letter-spacing: -.02em; }
+    .stat-value.green { color: var(--success); }
+    .stat-value.purple { color: var(--accent); }
+    .stat-value.teal { color: var(--accent2); }
+
+    /* ── Main content ──────────────────────────────────────── */
+    .main { max-width: 960px; margin: 0 auto; padding: 0 32px; }
+    .section-title {
+      font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em;
+      color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ── Script card ───────────────────────────────────────── */
+    .script-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 22px 24px; margin-bottom: 32px;
+      border-left: 3px solid var(--accent);
+    }
+    .script-card p { font-size: .97rem; line-height: 1.75; color: #c5c8d8; font-style: italic; }
+
+    /* ── Timeline ──────────────────────────────────────────── */
+    .timeline { display: flex; flex-direction: column; gap: 0; position: relative; margin-bottom: 40px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 28px; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(180deg, var(--accent), var(--accent2));
+      border-radius: 2px; opacity: .3;
+    }
+
+    .scene-card {
+      display: flex; gap: 20px; padding: 16px 0;
+      animation: fadeUp .5s ease both;
+    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
+    .scene-card:nth-child(1){animation-delay:.05s}
+    .scene-card:nth-child(2){animation-delay:.1s}
+    .scene-card:nth-child(3){animation-delay:.15s}
+    .scene-card:nth-child(4){animation-delay:.2s}
+
+    .scene-dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      flex-shrink: 0; margin-top: 22px; position: relative; z-index: 1;
+      box-shadow: 0 0 12px rgba(108,99,255,.5);
+    }
+
+    .scene-inner {
+      flex: 1;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      display: flex; gap: 0;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .scene-inner:hover {
+      border-color: var(--accent); transform: translateX(4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,.4);
+    }
+
+    .scene-thumb {
+      width: 160px; flex-shrink: 0; position: relative; overflow: hidden;
+      background: #0a0c14;
+    }
+    .scene-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .scene-inner:hover .scene-thumb img { transform: scale(1.05); }
+    .play-overlay {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.4); opacity: 0; transition: opacity .2s;
+    }
+    .scene-inner:hover .play-overlay { opacity: 1; }
+    .play-overlay svg { width: 36px; height: 36px; fill: white; filter: drop-shadow(0 2px 8px rgba(0,0,0,.8)); }
+
+    .scene-body { flex: 1; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+
+    .scene-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .scene-num {
+      font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+      color: var(--accent); background: rgba(108,99,255,.12);
+      border: 1px solid rgba(108,99,255,.25); border-radius: 6px;
+      padding: 2px 9px;
+    }
+    .scene-time {
+      font-size: .78rem; font-weight: 600; color: var(--muted);
+      background: rgba(255,255,255,.04); border-radius: 6px; padding: 2px 8px;
+    }
+    .scene-dur {
+      font-size: .72rem; color: var(--accent2); font-weight: 600;
+      margin-left: auto;
+    }
+
+    .scene-text {
+      font-size: .94rem; font-weight: 500; color: var(--text); line-height: 1.5;
+    }
+
+    .kw-row { display: flex; gap: 6px; flex-wrap: wrap; }
+    .kw {
+      font-size: .72rem; font-weight: 600; letter-spacing: .04em;
+      background: var(--tag-bg); border: 1px solid var(--border);
+      border-radius: 6px; padding: 2px 9px; color: var(--accent2);
+    }
+
+    .clip-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .clip-id {
+      font-size: .72rem; color: var(--muted); font-weight: 500;
+      font-family: 'Courier New', monospace;
+    }
+    .views-badge {
+      font-size: .72rem; font-weight: 700;
+      background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.2);
+      color: var(--success); border-radius: 6px; padding: 2px 8px;
+    }
+    .watch-btn {
+      font-size: .72rem; font-weight: 700; letter-spacing: .04em;
+      color: var(--accent); text-decoration: none;
+      background: rgba(108,99,255,.1); border: 1px solid rgba(108,99,255,.25);
+      border-radius: 6px; padding: 3px 10px;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .watch-btn:hover { background: rgba(108,99,255,.25); color: #c0bbff; }
+
+    /* ── Tags ──────────────────────────────────────────────── */
+    .tags { font-size: .71rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── Engine info ───────────────────────────────────────── */
+    .engine-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 12px; margin-bottom: 40px;
+    }
+    .engine-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 18px;
+    }
+    .engine-card-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); margin-bottom: 4px; }
+    .engine-card-val { font-size: .82rem; color: var(--text); font-weight: 500; }
+
+    /* ── JSON section ──────────────────────────────────────── */
+    .json-block {
+      background: #0a0c14; border: 1px solid var(--border);
+      border-radius: 14px; padding: 22px 24px; overflow-x: auto;
+      margin-bottom: 40px;
+    }
+    .json-block pre {
+      font-family: 'Courier New', monospace; font-size: .8rem;
+      line-height: 1.7; color: #9da8c5;
+    }
+    .json-block pre .key   { color: #79b8ff; }
+    .json-block pre .str   { color: #9ecb78; }
+    .json-block pre .num   { color: #f0ad4e; }
+    .json-block pre .bool  { color: #f97583; }
+
+    /* ── Footer ────────────────────────────────────────────── */
+    .footer {
+      text-align: center; color: var(--muted); font-size: .78rem; margin-top: 20px;
+      border-top: 1px solid var(--border); padding-top: 24px;
+    }
+    .footer span { color: var(--accent); font-weight: 600; }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><span></span> Live Pipeline Output</div>
+    <h1>BrollEngine <span>Output Viewer</span></h1>
+    <p class="hero-sub">
+      Script-to-B-roll pipeline · Job <code style="color:#a79fff">2953cdc2c6c1</code> · Completed 2026-10-22 23:42 IST
+    </p>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats-bar">
+  <div class="stat">
+    <span class="stat-label">Status</span>
+    <span class="stat-value green">✓ Done</span>
+  </div>
+  <div class="stat">
+    <span class="stat-label">Duration</span>
+    <span class="stat-value purple">12.0s</span>
+  </div>
+  <div class="stat">
+    <span class="stat-label">Scenes</span>
+    <span class="stat-value">4 / 4</span>
+  </div>
+  <div class="stat">
+    <span class="stat-label">Clips Found</span>
+    <span class="stat-value teal">4 / 4</span>
+  </div>
+  <div class="stat">
+    <span class="stat-label">Pipeline Time</span>
+    <span class="stat-value">1.9s</span>
+  </div>
+</div>
+
+<div class="main" style="padding-top: 24px;">
+
+  <!-- Script -->
+  <p class="section-title">Input Script</p>
+  <div class="script-card">
+    <p>"Saving money does not have to be difficult. Start by tracking every expense. Then cut one unnecessary subscription. Small steps lead to big savings over time."</p>
+  </div>
+
+  <!-- Timeline -->
+  <p class="section-title">Scene Timeline — B-roll Clips</p>
+  <div class="timeline">
+
+    <!-- Scene 0 -->
+    <div class="scene-card">
+      <div class="scene-dot"></div>
+      <div class="scene-inner">
+        <div class="scene-thumb">
+          <img src="https://cdn.pixabay.com/video/2022/02/28/109146-683077298_tiny.jpg" alt="money clip" />
+          <a class="play-overlay" href="https://cdn.pixabay.com/video/2022/02/28/109146-683077298_medium.mp4" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </a>
+        </div>
+        <div class="scene-body">
+          <div class="scene-header">
+            <span class="scene-num">Scene 0</span>
+            <span class="scene-time">0.0s → 3.7s</span>
+            <span class="scene-dur">3.7s</span>
+          </div>
+          <div class="scene-text">"Saving money does not have to be difficult."</div>
+          <div class="kw-row">
+            <span class="kw">saving</span><span class="kw">money</span><span class="kw">difficult</span>
+          </div>
+          <div class="clip-meta">
+            <span class="clip-id">Pixabay #109146</span>
+            <span class="views-badge">👁 148,473 views</span>
+            <a class="watch-btn" href="https://cdn.pixabay.com/video/2022/02/28/109146-683077298_medium.mp4" target="_blank">▶ Play Clip</a>
+          </div>
+          <div class="tags">Tags: money, man, key, dollar, to buy, count, stack, rich, luxury, save up, invest</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 1 -->
+    <div class="scene-card">
+      <div class="scene-dot"></div>
+      <div class="scene-inner">
+        <div class="scene-thumb">
+          <img src="https://cdn.pixabay.com/video/2020/05/24/39990-424360898_tiny.jpg" alt="tracking clip" />
+          <a class="play-overlay" href="https://cdn.pixabay.com/video/2020/05/24/39990-424360898_medium.mp4" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </a>
+        </div>
+        <div class="scene-body">
+          <div class="scene-header">
+            <span class="scene-num">Scene 1</span>
+            <span class="scene-time">3.7s → 6.0s</span>
+            <span class="scene-dur">2.3s</span>
+          </div>
+          <div class="scene-text">"Start by tracking every expense."</div>
+          <div class="kw-row">
+            <span class="kw">tracking</span><span class="kw">expense</span>
+          </div>
+          <div class="clip-meta">
+            <span class="clip-id">Pixabay #39990</span>
+            <span class="views-badge">👁 158,180 views</span>
+            <a class="watch-btn" href="https://cdn.pixabay.com/video/2020/05/24/39990-424360898_medium.mp4" target="_blank">▶ Play Clip</a>
+          </div>
+          <div class="tags">Tags: field, flower, mountains, tracking shot, nature, summer, spring, blossom, bloom</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 2 -->
+    <div class="scene-card">
+      <div class="scene-dot"></div>
+      <div class="scene-inner">
+        <div class="scene-thumb">
+          <img src="https://cdn.pixabay.com/video/2020/09/02/48891-454346906_tiny.jpg" alt="subscription clip" />
+          <a class="play-overlay" href="https://cdn.pixabay.com/video/2020/09/02/48891-454346906_medium.mp4" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </a>
+        </div>
+        <div class="scene-body">
+          <div class="scene-header">
+            <span class="scene-num">Scene 2</span>
+            <span class="scene-time">6.0s → 8.3s</span>
+            <span class="scene-dur">2.3s</span>
+          </div>
+          <div class="scene-text">"Then cut one unnecessary subscription."</div>
+          <div class="kw-row">
+            <span class="kw">unnecessary</span><span class="kw">subscription</span>
+          </div>
+          <div class="clip-meta">
+            <span class="clip-id">Pixabay #48891</span>
+            <span class="views-badge">👁 621,418 views</span>
+            <a class="watch-btn" href="https://cdn.pixabay.com/video/2020/09/02/48891-454346906_medium.mp4" target="_blank">▶ Play Clip</a>
+          </div>
+          <div class="tags">Tags: youtube subscribe, like, share, comment, subscription, social, icon, red button</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 3 -->
+    <div class="scene-card">
+      <div class="scene-dot"></div>
+      <div class="scene-inner">
+        <div class="scene-thumb">
+          <img src="https://cdn.pixabay.com/video/2016/05/12/3171-166338953_tiny.jpg" alt="steps clip" />
+          <a class="play-overlay" href="https://cdn.pixabay.com/video/2016/05/12/3171-166338953_medium.mp4" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </a>
+        </div>
+        <div class="scene-body">
+          <div class="scene-header">
+            <span class="scene-num">Scene 3</span>
+            <span class="scene-time">8.3s → 12.0s</span>
+            <span class="scene-dur">3.7s</span>
+          </div>
+          <div class="scene-text">"Small steps lead to big savings over time."</div>
+          <div class="kw-row">
+            <span class="kw">steps</span><span class="kw">savings</span>
+          </div>
+          <div class="clip-meta">
+            <span class="clip-id">Pixabay #3171</span>
+            <span class="views-badge">👁 822,495 views</span>
+            <a class="watch-btn" href="https://cdn.pixabay.com/video/2016/05/12/3171-166338953_medium.mp4" target="_blank">▶ Play Clip</a>
+          </div>
+          <div class="tags">Tags: walking, sneakers, nike, shoes, walk, path, outdoors, lifestyle, feet, step</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /timeline -->
+
+  <!-- Engine -->
+  <p class="section-title">Engine Components Used</p>
+  <div class="engine-grid">
+    <div class="engine-card">
+      <div class="engine-card-label">🎤 TTS</div>
+      <div class="engine-card-val">edge-tts / en-US-JennyNeural</div>
+    </div>
+    <div class="engine-card">
+      <div class="engine-card-label">🎬 Footage</div>
+      <div class="engine-card-val">Pixabay API (safesearch=true)</div>
+    </div>
+    <div class="engine-card">
+      <div class="engine-card-label">🧠 Scoring</div>
+      <div class="engine-card-val">Keyword-frequency heuristic</div>
+    </div>
+    <div class="engine-card">
+      <div class="engine-card-label">✂️ Assembly</div>
+      <div class="engine-card-val">FFmpeg concat demuxer</div>
+    </div>
+  </div>
+
+  <!-- Raw JSON -->
+  <p class="section-title">Raw JSON Manifest</p>
+  <div class="json-block">
+    <pre id="json-out"></pre>
+  </div>
+
+  <div class="footer">
+    Built with <span>BrollEngine</span> · PS3 — Script & Voiceover to B-roll Video Engine · IncuBrix 2027
+  </div>
+</div>
+
+<script>
+const manifest = {
+  "job_id": "2953cdc2c6c1",
+  "status": "completed",
+  "created_at": "2026-10-22T18:12:26.627065+00:00",
+  "script": "Saving money does not have to be difficult. Start by tracking every expense. Then cut one unnecessary subscription. Small steps lead to big savings over time.",
+  "total_duration": 12.0,
+  "audio_file": "demo_output/narration_2953cdc2c6c1.mp3",
+  "aspect_ratios": ["16:9"],
+  "scene_count": 4,
+  "clips_found": 4,
+  "timeline": [
+    {"scene_id":0,"text":"Saving money does not have to be difficult.","start_sec":0.0,"end_sec":3.69,"duration_sec":3.69,"keywords":["saving","money","difficult"],"clip":{"source":"pixabay","pixabay_id":109146,"url":"https://cdn.pixabay.com/video/2022/02/28/109146-683077298_medium.mp4","thumbnail":"https://cdn.pixabay.com/video/2022/02/28/109146-683077298_tiny.jpg","views":148473,"tags":"money, man, key, dollar, to buy, count, stack, rich, days wealthy, luxury, save up, invest"}},
+    {"scene_id":1,"text":"Start by tracking every expense.","start_sec":3.69,"end_sec":6.0,"duration_sec":2.31,"keywords":["tracking","expense"],"clip":{"source":"pixabay","pixabay_id":39990,"url":"https://cdn.pixabay.com/video/2020/05/24/39990-424360898_medium.mp4","thumbnail":"https://cdn.pixabay.com/video/2020/05/24/39990-424360898_tiny.jpg","views":158180,"tags":"field, flower, mountains, tracking shot, nature, heaven, summer, spring, blossom, bloom"}},
+    {"scene_id":2,"text":"Then cut one unnecessary subscription.","start_sec":6.0,"end_sec":8.31,"duration_sec":2.31,"keywords":["unnecessary","subscription"],"clip":{"source":"pixabay","pixabay_id":48891,"url":"https://cdn.pixabay.com/video/2020/09/02/48891-454346906_medium.mp4","thumbnail":"https://cdn.pixabay.com/video/2020/09/02/48891-454346906_tiny.jpg","views":621418,"tags":"youtube subscribe, like, share, comment, youtube, subscription, subscribe, social"}},
+    {"scene_id":3,"text":"Small steps lead to big savings over time.","start_sec":8.31,"end_sec":12.0,"duration_sec":3.69,"keywords":["steps","savings"],"clip":{"source":"pixabay","pixabay_id":3171,"url":"https://cdn.pixabay.com/video/2016/05/12/3171-166338953_medium.mp4","thumbnail":"https://cdn.pixabay.com/video/2016/05/12/3171-166338953_tiny.jpg","views":822495,"tags":"walking, sneakers, nike, shoes, walk, path, outdoors, lifestyle, young, boy"}}
+  ],
+  "engine": {
+    "tts": "edge-tts / en-US-JennyNeural",
+    "footage": "Pixabay API (safesearch=true)",
+    "scoring": "keyword-frequency heuristic (CPU fallback)",
+    "assembly": "FFmpeg concat demuxer (requires Docker for full run)"
+  }
+};
+
+// Syntax-highlight JSON
+function highlight(json) {
+  return JSON.stringify(json, null, 2)
+    .replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*")\s*:/g, '<span class="key">$1</span>:')
+    .replace(/:\s*("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*")/g, ': <span class="str">$1</span>')
+    .replace(/:\s*(\d+\.?\d*)/g, ': <span class="num">$1</span>')
+    .replace(/:\s*(true|false|null)/g, ': <span class="bool">$1</span>');
+}
+document.getElementById('json-out').innerHTML = highlight(manifest);
+</script>
+</body>
+</html>

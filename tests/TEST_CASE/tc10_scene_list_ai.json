@@ -1,0 +1,15 @@
+{
+  "scenes": [
+    {"text": "Welcome to the future of artificial intelligence.", "visual_hint": "futuristic technology"},
+    {"text": "Machine learning models are becoming more powerful every year.", "visual_hint": "data servers computers"},
+    {"text": "The applications are limitless — from healthcare to education.", "visual_hint": "medical technology education"},
+    {"text": "Join us as we explore what is possible.", "visual_hint": "innovation collaboration"}
+  ],
+  "script": "Welcome to the future of artificial intelligence. Machine learning models are becoming more powerful every year. The applications are limitless — from healthcare to education. Join us as we explore what is possible.",
+  "voice": "en-US-JennyNeural",
+  "aspect_ratios": ["16:9"],
+  "style": "technology AI futuristic",
+  "avoid": ["people's faces"],
+  "captions": {"burn_in": false, "srt": true},
+  "_description": "TC10: Scene list input with visual hints (Advanced level feature)"
+}

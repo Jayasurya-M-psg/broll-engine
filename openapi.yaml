@@ -1,0 +1,333 @@
+openapi: "3.1.0"
+info:
+  title: "BrollEngine — Script & Voiceover to B-roll Video"
+  description: |
+    Takes a voiceover audio URL or plain-text script and returns a finished,
+    licence-clean B-roll video timed to the narration.
+    Built for IncuBrix Engineering Assessment 3.
+
+    **All routes under /api/v1/**
+
+    Integration Standard:
+    - Background jobs: POST returns 202 + job_id; poll GET /api/v1/broll/jobs/{job_id}
+    - Safe retries: include `Idempotency-Key` header on POST
+    - Clear errors: all errors return `{"error": {"code", "message", "retryable", "details"}}`
+    - Structured JSON logs with X-Correlation-Id
+  version: "1.0.0"
+  contact:
+    name: "IncuBrix Assessment 3"
+
+servers:
+  - url: "http://localhost:8000"
+    description: "Local development (docker compose up)"
+
+paths:
+  /healthz:
+    get:
+      summary: "Liveness probe"
+      operationId: healthz
+      tags: [health]
+      responses:
+        "200":
+          description: "Process is alive"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ok"
+                  uptime_sec:
+                    type: number
+
+  /ready:
+    get:
+      summary: "Readiness probe — checks Redis and MinIO"
+      operationId: ready
+      tags: [health]
+      responses:
+        "200":
+          description: "All dependencies reachable"
+        "503":
+          description: "One or more dependencies unreachable"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReadyResponse"
+
+  /api/v1/broll/jobs:
+    post:
+      summary: "Create a B-roll video job"
+      operationId: createJob
+      tags: [broll]
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: false
+          description: "Client-generated unique key — same key returns cached response"
+          schema:
+            type: string
+        - name: X-Correlation-Id
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: X-Callback-Url
+          in: header
+          required: false
+          description: "URL to POST the job result to when complete (signed with HMAC-SHA256)"
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BrollJobRequest"
+            examples:
+              script_input:
+                summary: "Plain text script"
+                value:
+                  script: "Saving money does not have to be difficult. Start with small habits."
+                  voice: "en-US-JennyNeural"
+                  aspect_ratios: ["16:9"]
+                  style: "bright modern real-world footage"
+                  avoid: ["people's faces"]
+                  captions:
+                    burn_in: true
+                    srt: true
+              audio_input:
+                summary: "Audio URL"
+                value:
+                  audio_url: "https://example.com/voiceover.mp3"
+                  aspect_ratios: ["16:9", "9:16"]
+              scene_list:
+                summary: "Scene list (Advanced)"
+                value:
+                  scenes:
+                    - text: "Welcome to the future of AI."
+                      visual_hint: "futuristic technology"
+                    - text: "Machine learning is everywhere."
+                      visual_hint: "data servers"
+                  script: "Welcome to the future of AI. Machine learning is everywhere."
+                  aspect_ratios: ["16:9"]
+      responses:
+        "202":
+          description: "Job accepted and queued"
+          headers:
+            X-Correlation-Id:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JobCreatedResponse"
+        "400":
+          $ref: "#/components/responses/Error"
+        "422":
+          $ref: "#/components/responses/Error"
+
+  /api/v1/broll/jobs/{job_id}:
+    get:
+      summary: "Get B-roll job status and output links"
+      operationId: getJob
+      tags: [broll]
+      parameters:
+        - name: job_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "Job status"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JobStatusResponse"
+        "404":
+          $ref: "#/components/responses/Error"
+
+  /api/v1/broll/jobs/{job_id}/scenes/{scene_index}/swap:
+    post:
+      summary: "Swap a single scene's clip (Advanced)"
+      operationId: swapClip
+      tags: [broll]
+      parameters:
+        - name: job_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: scene_index
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "202":
+          description: "Swap queued"
+        "404":
+          $ref: "#/components/responses/Error"
+
+components:
+  schemas:
+    BrollJobRequest:
+      type: object
+      properties:
+        audio_url:
+          type: string
+          description: "URL of existing voiceover (mp3/wav/m4a, max 10 min)"
+          example: "https://example.com/voiceover.mp3"
+        script:
+          type: string
+          description: "Plain-text script; TTS will be generated if no audio_url"
+          example: "Saving money does not have to be difficult."
+        scenes:
+          type: array
+          description: "Optional IncuBrix scene list to override auto-segmentation"
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+              visual_hint:
+                type: string
+        voice:
+          type: string
+          default: "en-US-JennyNeural"
+          description: "TTS voice (edge-tts voice name or eSpeak voice string)"
+          example: "en-US-JennyNeural"
+        aspect_ratios:
+          type: array
+          items:
+            type: string
+            enum: ["16:9", "9:16", "1:1"]
+          default: ["16:9"]
+        style:
+          type: string
+          default: "bright, modern, real-world footage"
+        avoid:
+          type: array
+          items:
+            type: string
+          description: "Topics/subjects to exclude from footage search"
+          example: ["people's faces", "alcohol"]
+        captions:
+          type: object
+          properties:
+            burn_in:
+              type: boolean
+              default: false
+            srt:
+              type: boolean
+              default: true
+
+    JobCreatedResponse:
+      type: object
+      required: [job_id, status, poll_url]
+      properties:
+        job_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [queued]
+        message:
+          type: string
+          example: "Job accepted"
+        poll_url:
+          type: string
+          example: "http://localhost:8000/api/v1/broll/jobs/550e8400-..."
+        callback_url:
+          type: string
+          nullable: true
+
+    JobStatusResponse:
+      type: object
+      required: [job_id, status, progress]
+      properties:
+        job_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [queued, running, succeeded, failed]
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+        message:
+          type: string
+          nullable: true
+        outputs:
+          $ref: "#/components/schemas/OutputLinks"
+        error:
+          $ref: "#/components/schemas/ApiError"
+        callback_url:
+          type: string
+          nullable: true
+
+    OutputLinks:
+      type: object
+      properties:
+        video_16x9:
+          type: string
+          nullable: true
+          description: "Presigned URL for 16:9 video"
+        video_9x16:
+          type: string
+          nullable: true
+        video_1x1:
+          type: string
+          nullable: true
+        captions_srt:
+          type: string
+          nullable: true
+        timeline_json:
+          type: string
+          nullable: true
+        manifest_json:
+          type: string
+          nullable: true
+
+    ApiError:
+      type: object
+      required: [code, message, retryable]
+      properties:
+        code:
+          type: string
+          example: "INVALID_INPUT"
+        message:
+          type: string
+          example: "Either audio_url or script must be provided."
+        retryable:
+          type: boolean
+        details:
+          type: object
+          additionalProperties: true
+
+    ReadyResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ready, not_ready]
+        checks:
+          type: object
+          additionalProperties:
+            type: string
+
+  responses:
+    Error:
+      description: "Structured error response"
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [error]
+            properties:
+              error:
+                $ref: "#/components/schemas/ApiError"

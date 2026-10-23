@@ -1,0 +1,9 @@
+{
+  "script": "Sales grew 40 percent in 2025. Trust is earned slowly. Our new product reached one million users in just three months. Numbers tell the story, but people make it happen.",
+  "voice": "en-US-JennyNeural",
+  "aspect_ratios": ["16:9"],
+  "style": "corporate business professional",
+  "avoid": [],
+  "captions": {"burn_in": false, "srt": true},
+  "_description": "TC04: HARD CASE — statistics ('sales grew 40% in 2025') and abstract lines ('trust is earned slowly')"
+}

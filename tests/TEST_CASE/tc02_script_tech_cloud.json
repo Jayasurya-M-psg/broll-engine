@@ -1,0 +1,9 @@
+{
+  "script": "Cloud computing has changed the way businesses operate. Data travels across thousands of servers every second. Storage, speed, and security are the three pillars of modern infrastructure.",
+  "voice": "en-US-GuyNeural",
+  "aspect_ratios": ["16:9", "9:16"],
+  "style": "tech corporate clean",
+  "avoid": [],
+  "captions": {"burn_in": false, "srt": true},
+  "_description": "TC02: Tech/cloud script, male voice, dual aspect ratios, SRT only"
+}

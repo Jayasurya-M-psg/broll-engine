@@ -1,0 +1,9 @@
+{
+  "script": "Climate change is one of the most serious challenges of our time. Rising sea levels threaten coastal communities worldwide. Renewable energy offers a path forward for a sustainable future.",
+  "voice": "en-US-JennyNeural",
+  "aspect_ratios": ["9:16"],
+  "style": "nature environment green documentary",
+  "avoid": ["people's faces"],
+  "captions": {"burn_in": true, "srt": true},
+  "_description": "TC05: Environmental/nature topic, 9:16 portrait, avoid faces"
+}

@@ -1,0 +1,9 @@
+{
+  "script": "Saving money doesn't have to be difficult. Start with small habits that add up over time. Value is not just about price, it's about what you get in return.",
+  "voice": "en-US-JennyNeural",
+  "aspect_ratios": ["16:9"],
+  "style": "bright modern real-world footage",
+  "avoid": [],
+  "captions": {"burn_in": true, "srt": true},
+  "_description": "TC01: Plain text script, English female voice, 16:9, captions burned in"
+}
