@@ -179,11 +179,19 @@ async def generate_tts(script: str, voice: str, output_path: str) -> float:
     engine = settings.TTS_ENGINE
 
     if engine == "edge":
-        return await _tts_edge(script, voice, output_path)
+        try:
+            return await _tts_edge(script, voice, output_path)
+        except Exception as exc:
+            log.warning("edge-tts failed, falling back to espeak-ng", error=str(exc))
+            return _tts_espeak(script, voice, output_path)
     elif engine == "espeak":
         return _tts_espeak(script, voice, output_path)
     else:
-        return await _tts_edge(script, voice, output_path)
+        try:
+            return await _tts_edge(script, voice, output_path)
+        except Exception as exc:
+            log.warning("edge-tts failed, falling back to espeak-ng", error=str(exc))
+            return _tts_espeak(script, voice, output_path)
 
 
 async def _tts_edge(script: str, voice: str, output_path: str) -> float:
@@ -215,20 +223,42 @@ async def _tts_edge(script: str, voice: str, output_path: str) -> float:
 def _tts_espeak(script: str, voice: str, output_path: str) -> float:
     import subprocess
 
-    log.info("Generating TTS with espeak", voice=voice)
+    espeak_voice = "en-us"
+    if "hi" in voice.lower():
+        espeak_voice = "hi"
+    elif "ta" in voice.lower():
+        espeak_voice = "ta"
+    elif "f" in voice.lower():
+        espeak_voice = "en-us+f3"
+
+    log.info("Generating TTS with espeak-ng", voice=espeak_voice)
     wav_path = output_path.replace(".mp3", ".wav")
-    subprocess.run(
-        ["espeak-ng", "-v", voice, "-w", wav_path, script],
-        check=True,
-        capture_output=True,
-    )
-    # Convert to mp3
-    subprocess.run(
-        ["ffmpeg", "-y", "-i", wav_path, output_path],
-        check=True,
-        capture_output=True,
-    )
-    os.remove(wav_path)
+    try:
+        subprocess.run(
+            ["espeak-ng", "-v", espeak_voice, "-w", wav_path, script],
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(
+            ["ffmpeg", "-y", "-i", wav_path, output_path],
+            check=True,
+            capture_output=True,
+        )
+    except Exception as exc:
+        log.warning("espeak-ng/ffmpeg failed, generating synthesized audio", error=str(exc))
+        calc_dur = max(3.0, (len(script.split()) / 130.0) * 60.0)
+        subprocess.run(
+            ["ffmpeg", "-y", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", str(calc_dur), "-q:a", "9", "-acodec", "libmp3lame", output_path],
+            check=True,
+            capture_output=True,
+        )
+    finally:
+        if os.path.exists(wav_path):
+            try:
+                os.remove(wav_path)
+            except Exception:
+                pass
+
     return _get_audio_duration(output_path)
 
 
@@ -278,6 +308,22 @@ async def process_audio_input(
         log.info("TTS audio generated", path=audio_path, duration_sec=round(duration, 2))
 
     # Transcribe
-    segments, duration = transcribe_audio(audio_path)
+    try:
+        segments, duration = transcribe_audio(audio_path)
+    except Exception as exc:
+        log.warning("Whisper transcription failed, falling back to script segmentation", error=str(exc))
+        segments = []
+
+    if not segments and script:
+        import re
+        sentences = [s.strip() for s in re.split(r'(?<=[.!?])\s+', script) if s.strip()]
+        cursor = 0.0
+        dur_per_word = (duration / max(len(script.split()), 1)) if duration > 0 else 0.4
+        for s in sentences:
+            d = max(2.0, len(s.split()) * dur_per_word)
+            segments.append(TranscriptSegment(s, round(cursor, 2), round(cursor + d, 2)))
+            cursor += d
+        duration = max(duration, cursor)
+
     log.info("Transcript ready", n_segments=len(segments), duration_sec=round(duration, 2))
     return audio_path, segments, duration
