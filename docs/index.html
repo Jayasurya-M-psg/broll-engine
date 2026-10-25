@@ -6629,32 +6629,45 @@ Stay curious, keep learning, and remember: understanding technology today can he
       if (!player) return;
       player.currentTime = timeSec;
       player.play().catch(() => {});
-      highlightActiveScene(sceneIdx);
+      highlightActiveScene(sceneIdx, true);
       const card = document.getElementById(`scene-card-${sceneIdx}`);
       if (card && typeof card.scrollIntoView === 'function') {
         card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     }
 
-    function highlightActiveScene(sceneIdx) {
-      document.querySelectorAll('.scene-card').forEach((c, i) => {
-        const isActive = (i === sceneIdx);
-        c.classList.toggle('active-scene', isActive);
-        if (isActive) {
-          c.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-      });
-      if (loadedScenes[sceneIdx]) {
+    let currentActiveSceneIdx = -1;
+
+    function highlightActiveScene(sceneIdx, forceScroll = false) {
+      if (sceneIdx === currentActiveSceneIdx && !forceScroll) return;
+
+      if (currentActiveSceneIdx >= 0 && currentActiveSceneIdx !== sceneIdx) {
+        const prevCard = document.getElementById('scene-card-' + currentActiveSceneIdx);
+        if (prevCard) prevCard.classList.remove('active-scene');
+        const allTicks = document.querySelectorAll('.scene-marker-tick');
+        if (allTicks && allTicks[currentActiveSceneIdx]) allTicks[currentActiveSceneIdx].classList.remove('active');
+      }
+
+      currentActiveSceneIdx = sceneIdx;
+
+      const newCard = document.getElementById('scene-card-' + sceneIdx);
+      if (newCard) {
+        newCard.classList.add('active-scene');
+        newCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      if (loadedScenes && loadedScenes[sceneIdx]) {
         const s = loadedScenes[sceneIdx];
         const playText = document.getElementById('playing-scene-text');
-        if (playText) playText.innerText = `Scene ${sceneIdx + 1} (${s.time}) · ${s.clipId}`;
+        if (playText) playText.innerText = 'Scene ' + (sceneIdx + 1) + ' (' + s.time + ') · ' + s.clipId;
         const sceneLabel = document.getElementById('scrub-scene-label');
-        if (sceneLabel) sceneLabel.innerText = `Scene ${sceneIdx + 1} of ${loadedScenes.length}`;
+        if (sceneLabel) sceneLabel.innerText = 'Scene ' + (sceneIdx + 1) + ' of ' + loadedScenes.length;
       }
-      // Highlight corresponding tick on scrubber
-      document.querySelectorAll('.scene-marker-tick').forEach((tick, i) => {
-        tick.classList.toggle('active', i === sceneIdx);
-      });
+
+      const allTicks = document.querySelectorAll('.scene-marker-tick');
+      if (allTicks && allTicks[sceneIdx]) {
+        allTicks[sceneIdx].classList.add('active');
+      }
     }
 
     // Forward and Backward Step in Seconds
