@@ -171,7 +171,7 @@
       gap: 28px;
       align-items: start;
     }
-    @media (max-width: 1360px) {
+    @media (max-width: 1024px) {
       .studio-grid { grid-template-columns: 1fr; }
     }
 
@@ -1450,7 +1450,7 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
   
-    @media (max-width: 1180px) {
+    @media (max-width: 1024px) {
       .studio-grid {
         display: flex !important;
         flex-direction: column !important;
@@ -1464,8 +1464,8 @@
     /* --- LEFT SIDE SCENE CLIPS PANEL --- */
     .studio-grid {
       display: grid;
-      grid-template-columns: minmax(460px, 520px) 1fr;
-      gap: 24px;
+      grid-template-columns: minmax(720px, 860px) 1fr;
+      gap: 28px;
       align-items: start;
     }
     .left-tabs-nav {
@@ -1570,16 +1570,19 @@
     .scene-card {
       display: flex !important;
       flex-direction: row !important;
-      align-items: center;
-      gap: 18px;
-      padding: 16px 18px;
-      background: #0c1220;
-      border: 1.5px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      cursor: pointer;
-      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      align-items: center !important;
+      gap: 20px !important;
+      padding: 16px 20px !important;
+      background: #0d1424 !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.09) !important;
+      border-radius: 14px !important;
+      cursor: pointer !important;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      position: relative !important;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4) !important;
+      flex-shrink: 0 !important;
+      min-height: 185px !important;
+      box-sizing: border-box !important;
     }
     .scene-card:hover {
       transform: translateY(-3px);
@@ -1594,14 +1597,23 @@
     }
     .scene-thumb-container {
       width: 280px !important;
+      min-width: 280px !important;
+      max-width: 280px !important;
       height: 158px !important;
       min-height: 158px !important;
+      max-height: 158px !important;
       flex-shrink: 0 !important;
-      border-radius: 10px;
-      overflow: hidden;
-      position: relative;
-      background: #060911;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65);
+      border-radius: 10px !important;
+      overflow: hidden !important;
+      position: relative !important;
+      background: #060911 !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65) !important;
+    }
+    .scene-thumb-img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
     }
     .scene-body {
       flex: 1;
