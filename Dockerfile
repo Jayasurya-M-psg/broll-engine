@@ -39,7 +39,9 @@ RUN python -m spacy download en_core_web_sm || true
 
 # Copy application code
 COPY app/ ./app/
+COPY docs/ ./docs/
 COPY batch_runner.py .
+COPY standalone_server.py .
 
 # Non-root user for security
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app

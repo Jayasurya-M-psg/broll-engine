@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: broll-engine
+    env: python
+    buildCommand: pip install --no-cache-dir -r requirements.txt
+    startCommand: python standalone_server.py
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: PIXABAY_API_KEY
+        sync: false
+      - key: PEXELS_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false

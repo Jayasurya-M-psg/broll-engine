@@ -29,6 +29,7 @@ import uvicorn
 from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse, StreamingResponse, Response
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 # ── Config ─────────────────────────────────────────────────────────────────
@@ -56,6 +57,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+docs_assets_dir = BASE_DIR / "docs" / "assets"
+if docs_assets_dir.exists():
+    app.mount("/assets", StaticFiles(directory=str(docs_assets_dir)), name="assets")
 
 from fastapi.exceptions import RequestValidationError
 
@@ -1943,22 +1948,29 @@ def download_file(job_id: str, filename: str, request: Request):
 @app.get("/demo")
 @app.get("/viewer")
 def serve_ui():
+    docs_ui = BASE_DIR / "docs" / "index.html"
+    if docs_ui.exists():
+        return FileResponse(docs_ui, media_type="text/html")
     ui_path = OUTPUT_DIR / "output_viewer.html"
     if ui_path.exists():
         return FileResponse(ui_path, media_type="text/html")
     raise HTTPException(status_code=404, detail="UI viewer not found")
 
 @app.get("/")
-def root():
+def root(request: Request):
+    accept = request.headers.get("accept", "")
+    if "text/html" in accept:
+        return serve_ui()
     return {
         "service": "BrollEngine",
         "description": "Script and Voiceover to B-roll Video Engine with In-Place Swapper",
         "version": "1.2.0",
-        "ui": "http://localhost:8080/output_viewer.html",
+        "ui": "/ui",
         "docs": "/docs",
         "health": "/healthz",
         "submit_job": "POST /api/v1/broll/jobs",
     }
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.getenv("PORT", "8000"))
+    uvicorn.run(app, host="0.0.0.0", port=port)
