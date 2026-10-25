@@ -1448,6 +1448,176 @@
       border-top-color: #22d3ee; border-radius: 50%; animation: spin 0.7s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+  
+    /* --- LIVE B-ROLL CLIPS FILMSTRIP UNDER VIDEO --- */
+    .clips-strip-container {
+      margin-top: 14px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md, 12px);
+      padding: 12px 14px;
+      backdrop-filter: blur(10px);
+    }
+    .clips-strip-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .clips-strip-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+    .live-pill {
+      font-size: 0.62rem;
+      padding: 2px 7px;
+      background: rgba(16, 185, 129, 0.18);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 9999px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .clips-strip-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .clips-strip-hint {
+      font-size: 0.74rem;
+      color: #94a3b8;
+    }
+    .strip-arrow-btn {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      transition: all 0.2s ease;
+    }
+    .strip-arrow-btn:hover {
+      background: rgba(99, 102, 241, 0.35);
+      border-color: #818cf8;
+      transform: scale(1.08);
+    }
+    .clips-filmstrip {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 2px 10px 2px;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+    .clips-filmstrip::-webkit-scrollbar {
+      height: 7px;
+    }
+    .clips-filmstrip::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 4px;
+    }
+    .clips-filmstrip::-webkit-scrollbar-thumb {
+      background: rgba(129, 140, 248, 0.45);
+      border-radius: 4px;
+    }
+    .clips-filmstrip::-webkit-scrollbar-thumb:hover {
+      background: rgba(129, 140, 248, 0.85);
+    }
+    .filmstrip-clip-item {
+      flex: 0 0 145px;
+      cursor: pointer;
+      background: #0f172a;
+      border: 2px solid rgba(255, 255, 255, 0.08);
+      border-radius: 9px;
+      overflow: hidden;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+      text-align: left;
+    }
+    .filmstrip-clip-item:hover {
+      transform: translateY(-3px);
+      border-color: #818cf8;
+      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.45);
+    }
+    .filmstrip-clip-item.active {
+      border-color: #38bdf8;
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.7), 0 0 0 2px rgba(56, 189, 248, 0.35);
+      transform: scale(1.05);
+      z-index: 2;
+    }
+    .filmstrip-thumb-box {
+      width: 100%;
+      height: 82px;
+      position: relative;
+      background: #090d16;
+      overflow: hidden;
+    }
+    .filmstrip-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .filmstrip-clip-item:hover .filmstrip-thumb-img {
+      transform: scale(1.08);
+    }
+    .filmstrip-scene-badge {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      background: rgba(15, 23, 42, 0.85);
+      color: #e2e8f0;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .filmstrip-time-badge {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background: rgba(15, 23, 42, 0.85);
+      color: #38bdf8;
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 4px;
+      backdrop-filter: blur(4px);
+    }
+    .filmstrip-clip-info {
+      padding: 6px 8px;
+    }
+    .filmstrip-clip-query {
+      font-size: 0.70rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .filmstrip-clip-source {
+      font-size: 0.62rem;
+      color: #818cf8;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
   </style>
 </head>
 <body>
@@ -1827,6 +1997,43 @@
               <span><kbd>F</kbd> Fullscreen</span>
             </div>
           </div>
+
+          <!-- Live Interactive Clips Filmstrip Track (Directly under video & playback controls) -->
+          <div class="clips-strip-container" id="clips-strip-container">
+            <div class="clips-strip-header">
+              <div class="clips-strip-title">
+                <span>🎞️</span>
+                <span>B-Roll Clips Under Video (<span id="clips-count-badge">131</span>)</span>
+                <span class="live-pill">LIVE SYNC</span>
+              </div>
+              <div class="clips-strip-nav">
+                <span class="clips-strip-hint">Click any clip to seek & play</span>
+                <button type="button" class="strip-arrow-btn" onclick="scrollClipsStrip(-1)" title="Scroll Left">◀</button>
+                <button type="button" class="strip-arrow-btn" onclick="scrollClipsStrip(1)" title="Scroll Right">▶</button>
+              </div>
+            </div>
+            <div class="clips-filmstrip" id="clips-filmstrip">
+              <!-- Dynamically populated with all 131 scene clips -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Interactive Scene Timeline -->
+        <div>
+          <div class="timeline-title-row">
+            <div class="timeline-title">
+              <span>🎞</span> Scene Timeline & B-Roll Match
+            </div>
+            <span class="timeline-hint">💡 Click any scene below to seek & play</span>
+          </div>
+
+          <div class="timeline" id="timeline-container">
+            <div id="empty-timeline-hint" style="text-align: center; padding: 45px 20px; background: rgba(255,255,255,0.02); border: 1px dashed var(--border); border-radius: var(--radius-md); color: var(--text-dim); font-size: 0.9rem;">
+              🎬 <b>No scenes generated yet.</b><br/>
+              Type or paste your script in the editor on the left and click <b>Generate Scene-Matched Video</b>.
+            </div>
+          </div>
         </div>
 
         <!-- One-Click Media Pack & Export Hub -->
@@ -1880,23 +2087,6 @@
                 <small style="color: #c4b5fd; font-size: 0.68rem;">1-Click Copy Post</small>
               </div>
             </button>
-          </div>
-        </div>
-
-        <!-- Interactive Scene Timeline -->
-        <div>
-          <div class="timeline-title-row">
-            <div class="timeline-title">
-              <span>🎞</span> Scene Timeline & B-Roll Match
-            </div>
-            <span class="timeline-hint">💡 Click any scene below to seek & play</span>
-          </div>
-
-          <div class="timeline" id="timeline-container">
-            <div id="empty-timeline-hint" style="text-align: center; padding: 45px 20px; background: rgba(255,255,255,0.02); border: 1px dashed var(--border); border-radius: var(--radius-md); color: var(--text-dim); font-size: 0.9rem;">
-              🎬 <b>No scenes generated yet.</b><br/>
-              Type or paste your script in the editor on the left and click <b>Generate Scene-Matched Video</b>.
-            </div>
           </div>
         </div>
 
@@ -1988,6 +2178,27 @@
           </div>
         </div>
       `).join('');
+
+      // Populate Live B-Roll Clips Filmstrip directly under the video
+      const filmstrip = document.getElementById('clips-filmstrip');
+      if (filmstrip) {
+        filmstrip.innerHTML = scenes.map((s, idx) => `
+          <div class="filmstrip-clip-item" id="filmstrip-item-${idx}" onclick="seekToScene(${s.startTime || 0}, ${idx})" title="${(s.text || '').replace(/"/g, '&quot;')}">
+            <div class="filmstrip-thumb-box">
+              <img class="filmstrip-thumb-img" src="${s.thumb}" alt="Clip ${idx + 1}" loading="lazy"
+                   onerror="if (this.dataset.fallback !== '1' && '${s.previewImg || ''}') { this.dataset.fallback = '1'; this.src = '${s.previewImg || ''}'; } else { this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'90\' viewBox=\'0 0 160 90\'><rect width=\'160\' height=\'90\' fill=\'%23141926\'/><text x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23818cf8\' font-family=\'sans-serif\' font-size=\'12\' font-weight=\'bold\'>CLIP #${idx + 1}</text></svg>'; }" />
+              <span class="filmstrip-scene-badge">#${idx + 1}</span>
+              <span class="filmstrip-time-badge">${formatTime(s.startTime, false)}</span>
+            </div>
+            <div class="filmstrip-clip-info">
+              <div class="filmstrip-clip-query">${(s.kws && s.kws.length > 0) ? s.kws.slice(0, 2).join(', ') : (s.clipId || 'Scene ' + (idx + 1))}</div>
+              <div class="filmstrip-clip-source">🎥 ${s.clipSource || 'Stock'} · ${s.dur}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+      const badge = document.getElementById('clips-count-badge');
+      if (badge) badge.innerText = scenes.length;
 
       // Update interactive scrubber markers
       updateScrubberMarkers();
@@ -2132,6 +2343,14 @@
       }
     }
 
+    
+    function scrollClipsStrip(direction) {
+      const strip = document.getElementById('clips-filmstrip');
+      if (strip) {
+        strip.scrollBy({ left: direction * 350, behavior: 'smooth' });
+      }
+    }
+
     function highlightActiveScene(sceneIdx) {
       document.querySelectorAll('.scene-card').forEach((c, i) => {
         c.classList.toggle('active-scene', i === sceneIdx);
@@ -2146,6 +2365,15 @@
       // Highlight corresponding tick on scrubber
       document.querySelectorAll('.scene-marker-tick').forEach((tick, i) => {
         tick.classList.toggle('active', i === sceneIdx);
+      });
+
+      // Highlight and auto-scroll active clip in the filmstrip tray under the video
+      document.querySelectorAll('.filmstrip-clip-item').forEach((item, i) => {
+        const isActive = (i === sceneIdx);
+        item.classList.toggle('active', isActive);
+        if (isActive) {
+          item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
       });
     }
 
