@@ -1,0 +1,191 @@
+{
+  "test_case": "tc09_hard_double_meaning",
+  "request": {
+    "script": "The banking sector is undergoing rapid transformation. Digital payments have replaced cash for millions of customers. But questions about privacy and security remain.",
+    "voice": "en-GB-SoniaNeural",
+    "aspect_ratios": [
+      "16:9"
+    ],
+    "style": "finance banking professional corporate",
+    "avoid": [
+      "people's faces",
+      "alcohol"
+    ],
+    "captions": {
+      "burn_in": true,
+      "srt": true
+    },
+    "_description": "TC09: HARD CASE — 'bank' has double meaning (river bank vs financial); word 'value' avoided by safe search"
+  },
+  "submitted_at": "2026-10-24T10:57:13.577850+00:00",
+  "job_id": "960fcecc80ce",
+  "submit_response": {
+    "job_id": "960fcecc80ce",
+    "status": "queued",
+    "poll_url": "/api/v1/broll/jobs/960fcecc80ce",
+    "status_url": "/api/v1/broll/jobs/960fcecc80ce",
+    "manifest_url": "/api/v1/broll/jobs/960fcecc80ce/manifest",
+    "idempotency_key": null
+  },
+  "final_status": {
+    "job_id": "960fcecc80ce",
+    "status": "succeeded",
+    "progress": 100,
+    "message": "✓ Video generated & assembled successfully matching your script!",
+    "created_at": "2026-10-24T10:57:13.862324+00:00",
+    "outputs": {
+      "video_16x9": "http://localhost:8000/api/v1/broll/jobs/960fcecc80ce/download/video_16x9.mp4",
+      "video_9x16": "http://localhost:8000/api/v1/broll/jobs/960fcecc80ce/download/video_9x16.mp4",
+      "video_1x1": "http://localhost:8000/api/v1/broll/jobs/960fcecc80ce/download/video_1x1.mp4",
+      "captions_srt": "http://localhost:8000/api/v1/broll/jobs/960fcecc80ce/download/captions.srt",
+      "timeline_json": "http://localhost:8000/api/v1/broll/jobs/960fcecc80ce/download/timeline.json",
+      "manifest_json": "http://localhost:8000/api/v1/broll/jobs/960fcecc80ce/download/manifest.json"
+    },
+    "manifest": {
+      "job_id": "960fcecc80ce",
+      "status": "succeeded",
+      "created_at": "2026-10-24T10:57:13.862324+00:00",
+      "completed_at": "2026-10-24T10:57:47.301283+00:00",
+      "script": "The banking sector is undergoing rapid transformation. Digital payments have replaced cash for millions of customers. But questions about privacy and security remain.",
+      "total_duration": 13.07,
+      "aspect_ratios": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "caption_style": "yellow",
+      "bgm": "ambient",
+      "scene_count": 3,
+      "clips_found": 3,
+      "timeline": [
+        {
+          "scene_index": 0,
+          "narration_text": "The banking sector is undergoing rapid transformation.",
+          "start_time": 0.0,
+          "end_time": 4.32,
+          "duration": 4.32,
+          "keywords": [
+            "banking",
+            "sector",
+            "undergoing",
+            "rapid"
+          ],
+          "matched_query": "banking sector",
+          "clip": {
+            "scene_index": 0,
+            "narration_text": "The banking sector is undergoing rapid transformation.",
+            "start_time": 0.0,
+            "end_time": 4.32,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #204306",
+            "clip_url": "https://cdn.pixabay.com/video/2024/03/15/204306-923909642_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/960fcecc80ce/download/thumb_0.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2024/03/15/204306-923909642_tiny.jpg",
+            "attribution": "Footage by Natures_Embrace on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'banking sector'"
+          }
+        },
+        {
+          "scene_index": 1,
+          "narration_text": "Digital payments have replaced cash for millions of customers.",
+          "start_time": 4.32,
+          "end_time": 8.9,
+          "duration": 4.58,
+          "keywords": [
+            "digital",
+            "payments",
+            "replaced",
+            "cash"
+          ],
+          "matched_query": "money finance budget savings",
+          "clip": {
+            "scene_index": 1,
+            "narration_text": "Digital payments have replaced cash for millions of customers.",
+            "start_time": 4.32,
+            "end_time": 8.9,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #153460",
+            "clip_url": "https://cdn.pixabay.com/video/2023/03/06/153460-805688493_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/960fcecc80ce/download/thumb_1.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2023/03/06/153460-805688493_tiny.jpg",
+            "attribution": "Footage by 34168960 on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'money finance budget savings'"
+          }
+        },
+        {
+          "scene_index": 2,
+          "narration_text": "But questions about privacy and security remain.",
+          "start_time": 8.9,
+          "end_time": 13.07,
+          "duration": 4.17,
+          "keywords": [
+            "questions",
+            "privacy",
+            "security",
+            "remain"
+          ],
+          "matched_query": "questions privacy",
+          "clip": {
+            "scene_index": 2,
+            "narration_text": "But questions about privacy and security remain.",
+            "start_time": 8.9,
+            "end_time": 13.07,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #2176",
+            "clip_url": "https://cdn.pixabay.com/video/2016/02/15/2176-155747466_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/960fcecc80ce/download/thumb_2.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2016/02/15/2176-155747466_tiny.jpg",
+            "attribution": "Footage by TBIT on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'questions privacy'"
+          }
+        }
+      ],
+      "models": {
+        "tts": "edge-tts / en-GB-SoniaNeural",
+        "vision": "Exact Semantic Visual Action Mapping & CLIP compatible",
+        "asr": "Local Whisper sentence alignment"
+      },
+      "providers": {
+        "stock_footage": "Pixabay Video API v2 (Commercial License)",
+        "tts_provider": "Microsoft Cognitive Neural Voices",
+        "renderer": "FFmpeg libx264/AAC"
+      },
+      "timings": {
+        "total_sec": 33.44,
+        "narration_sec": 13.07,
+        "render_sec": 33.44
+      },
+      "cost_estimate_usd": 0.0,
+      "licence_summary": "100% Commercial Use Clean. Pixabay License (Attribution recorded per clip, no watermarks, safe for monetization).",
+      "output_files": {
+        "video_16x9.mp4": "http://localhost:8000/api/v1/broll/jobs/960fcecc80ce/download/video_16x9.mp4",
+        "video_9x16.mp4": "http://localhost:8000/api/v1/broll/jobs/960fcecc80ce/download/video_9x16.mp4",
+        "video_1x1.mp4": "http://localhost:8000/api/v1/broll/jobs/960fcecc80ce/download/video_1x1.mp4",
+        "narration.mp3": "http://localhost:8000/api/v1/broll/jobs/960fcecc80ce/download/narration.mp3",
+        "captions.srt": "http://localhost:8000/api/v1/broll/jobs/960fcecc80ce/download/captions.srt"
+      },
+      "engine": {
+        "tts": "edge-tts / en-GB-SoniaNeural",
+        "footage": "Pixabay API v2 (Clean Commercial License)",
+        "scoring": "Exact Semantic Visual Action Mapping",
+        "assembly": "FFmpeg Concat Demuxer + Subtitle Burn + BGM Ducking",
+        "version": "1.2.0"
+      },
+      "metrics": {
+        "turnaround_sec": 33.44,
+        "cost_per_min": "$0.00 (License-Clean Free APIs)",
+        "coverage_pct": 100.0,
+        "reliability": "100% (No repeating clips, negative tag filter active)"
+      }
+    },
+    "manifest_url": "/api/v1/broll/jobs/960fcecc80ce/manifest"
+  },
+  "status": "succeeded",
+  "elapsed_sec": 37.23
+}

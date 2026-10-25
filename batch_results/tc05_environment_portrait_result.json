@@ -1,0 +1,190 @@
+{
+  "test_case": "tc05_environment_portrait",
+  "request": {
+    "script": "Climate change is one of the most serious challenges of our time. Rising sea levels threaten coastal communities worldwide. Renewable energy offers a path forward for a sustainable future.",
+    "voice": "en-US-JennyNeural",
+    "aspect_ratios": [
+      "9:16"
+    ],
+    "style": "nature environment green documentary",
+    "avoid": [
+      "people's faces"
+    ],
+    "captions": {
+      "burn_in": true,
+      "srt": true
+    },
+    "_description": "TC05: Environmental/nature topic, 9:16 portrait, avoid faces"
+  },
+  "submitted_at": "2026-10-24T10:53:22.801297+00:00",
+  "job_id": "249bda905bb5",
+  "submit_response": {
+    "job_id": "249bda905bb5",
+    "status": "queued",
+    "poll_url": "/api/v1/broll/jobs/249bda905bb5",
+    "status_url": "/api/v1/broll/jobs/249bda905bb5",
+    "manifest_url": "/api/v1/broll/jobs/249bda905bb5/manifest",
+    "idempotency_key": null
+  },
+  "final_status": {
+    "job_id": "249bda905bb5",
+    "status": "succeeded",
+    "progress": 100,
+    "message": "✓ Video generated & assembled successfully matching your script!",
+    "created_at": "2026-10-24T10:53:22.805278+00:00",
+    "outputs": {
+      "video_16x9": "http://localhost:8000/api/v1/broll/jobs/249bda905bb5/download/video_16x9.mp4",
+      "video_9x16": "http://localhost:8000/api/v1/broll/jobs/249bda905bb5/download/video_9x16.mp4",
+      "video_1x1": "http://localhost:8000/api/v1/broll/jobs/249bda905bb5/download/video_1x1.mp4",
+      "captions_srt": "http://localhost:8000/api/v1/broll/jobs/249bda905bb5/download/captions.srt",
+      "timeline_json": "http://localhost:8000/api/v1/broll/jobs/249bda905bb5/download/timeline.json",
+      "manifest_json": "http://localhost:8000/api/v1/broll/jobs/249bda905bb5/download/manifest.json"
+    },
+    "manifest": {
+      "job_id": "249bda905bb5",
+      "status": "succeeded",
+      "created_at": "2026-10-24T10:53:22.805278+00:00",
+      "completed_at": "2026-10-24T10:54:04.517263+00:00",
+      "script": "Climate change is one of the most serious challenges of our time. Rising sea levels threaten coastal communities worldwide. Renewable energy offers a path forward for a sustainable future.",
+      "total_duration": 14.36,
+      "aspect_ratios": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "caption_style": "yellow",
+      "bgm": "ambient",
+      "scene_count": 3,
+      "clips_found": 3,
+      "timeline": [
+        {
+          "scene_index": 0,
+          "narration_text": "Climate change is one of the most serious challenges of our time.",
+          "start_time": 0.0,
+          "end_time": 4.68,
+          "duration": 4.68,
+          "keywords": [
+            "climate",
+            "change",
+            "serious",
+            "challenges"
+          ],
+          "matched_query": "climate change",
+          "clip": {
+            "scene_index": 0,
+            "narration_text": "Climate change is one of the most serious challenges of our time.",
+            "start_time": 0.0,
+            "end_time": 4.68,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #99867",
+            "clip_url": "https://cdn.pixabay.com/video/2021/12/07/99867-658725791_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/249bda905bb5/download/thumb_0.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2021/12/07/99867-658725791_tiny.jpg",
+            "attribution": "Footage by MingMedia on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'climate change'"
+          }
+        },
+        {
+          "scene_index": 1,
+          "narration_text": "Rising sea levels threaten coastal communities worldwide.",
+          "start_time": 4.68,
+          "end_time": 9.16,
+          "duration": 4.48,
+          "keywords": [
+            "rising",
+            "sea",
+            "levels",
+            "threaten"
+          ],
+          "matched_query": "ocean waves crashing sunset",
+          "clip": {
+            "scene_index": 1,
+            "narration_text": "Rising sea levels threaten coastal communities worldwide.",
+            "start_time": 4.68,
+            "end_time": 9.16,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #353078",
+            "clip_url": "https://cdn.pixabay.com/video/2026/05/16/353078_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/249bda905bb5/download/thumb_1.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2026/05/16/353078_tiny.jpg",
+            "attribution": "Footage by Mario_Krimer on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'ocean waves crashing sunset'"
+          }
+        },
+        {
+          "scene_index": 2,
+          "narration_text": "Renewable energy offers a path forward for a sustainable future.",
+          "start_time": 9.16,
+          "end_time": 14.36,
+          "duration": 5.2,
+          "keywords": [
+            "renewable",
+            "energy",
+            "offers",
+            "path"
+          ],
+          "matched_query": "renewable energy",
+          "clip": {
+            "scene_index": 2,
+            "narration_text": "Renewable energy offers a path forward for a sustainable future.",
+            "start_time": 9.16,
+            "end_time": 14.36,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #156444",
+            "clip_url": "https://cdn.pixabay.com/video/2023/03/28/156444-812591952_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/249bda905bb5/download/thumb_2.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2023/03/28/156444-812591952_tiny.jpg",
+            "attribution": "Footage by adege on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'renewable energy'"
+          }
+        }
+      ],
+      "models": {
+        "tts": "edge-tts / en-US-JennyNeural",
+        "vision": "Exact Semantic Visual Action Mapping & CLIP compatible",
+        "asr": "Local Whisper sentence alignment"
+      },
+      "providers": {
+        "stock_footage": "Pixabay Video API v2 (Commercial License)",
+        "tts_provider": "Microsoft Cognitive Neural Voices",
+        "renderer": "FFmpeg libx264/AAC"
+      },
+      "timings": {
+        "total_sec": 41.71,
+        "narration_sec": 14.36,
+        "render_sec": 41.71
+      },
+      "cost_estimate_usd": 0.0,
+      "licence_summary": "100% Commercial Use Clean. Pixabay License (Attribution recorded per clip, no watermarks, safe for monetization).",
+      "output_files": {
+        "video_16x9.mp4": "http://localhost:8000/api/v1/broll/jobs/249bda905bb5/download/video_16x9.mp4",
+        "video_9x16.mp4": "http://localhost:8000/api/v1/broll/jobs/249bda905bb5/download/video_9x16.mp4",
+        "video_1x1.mp4": "http://localhost:8000/api/v1/broll/jobs/249bda905bb5/download/video_1x1.mp4",
+        "narration.mp3": "http://localhost:8000/api/v1/broll/jobs/249bda905bb5/download/narration.mp3",
+        "captions.srt": "http://localhost:8000/api/v1/broll/jobs/249bda905bb5/download/captions.srt"
+      },
+      "engine": {
+        "tts": "edge-tts / en-US-JennyNeural",
+        "footage": "Pixabay API v2 (Clean Commercial License)",
+        "scoring": "Exact Semantic Visual Action Mapping",
+        "assembly": "FFmpeg Concat Demuxer + Subtitle Burn + BGM Ducking",
+        "version": "1.2.0"
+      },
+      "metrics": {
+        "turnaround_sec": 41.71,
+        "cost_per_min": "$0.00 (License-Clean Free APIs)",
+        "coverage_pct": 100.0,
+        "reliability": "100% (No repeating clips, negative tag filter active)"
+      }
+    },
+    "manifest_url": "/api/v1/broll/jobs/249bda905bb5/manifest"
+  },
+  "status": "succeeded",
+  "elapsed_sec": 41.89
+}

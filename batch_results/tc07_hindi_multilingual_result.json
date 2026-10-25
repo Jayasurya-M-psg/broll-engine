@@ -1,0 +1,128 @@
+{
+  "test_case": "tc07_hindi_multilingual",
+  "request": {
+    "script": "आज हम बात करेंगे स्वास्थ्य के बारे में। नियमित व्यायाम और संतुलित आहार आपको स्वस्थ रखते हैं। हर दिन कम से कम तीस मिनट चलना चाहिए।",
+    "voice": "hi-IN-SwaraNeural",
+    "aspect_ratios": [
+      "16:9"
+    ],
+    "style": "health wellness lifestyle",
+    "avoid": [],
+    "captions": {
+      "burn_in": true,
+      "srt": true
+    },
+    "_description": "TC07: MULTILINGUAL — Hindi script, Hindi TTS voice (Outstanding level)"
+  },
+  "submitted_at": "2026-10-24T10:54:20.512206+00:00",
+  "job_id": "7088f4d0642e",
+  "submit_response": {
+    "job_id": "7088f4d0642e",
+    "status": "queued",
+    "poll_url": "/api/v1/broll/jobs/7088f4d0642e",
+    "status_url": "/api/v1/broll/jobs/7088f4d0642e",
+    "manifest_url": "/api/v1/broll/jobs/7088f4d0642e/manifest",
+    "idempotency_key": null
+  },
+  "final_status": {
+    "job_id": "7088f4d0642e",
+    "status": "succeeded",
+    "progress": 100,
+    "message": "✓ Video generated & assembled successfully matching your script!",
+    "created_at": "2026-10-24T10:54:20.516009+00:00",
+    "outputs": {
+      "video_16x9": "http://localhost:8000/api/v1/broll/jobs/7088f4d0642e/download/video_16x9.mp4",
+      "video_9x16": "http://localhost:8000/api/v1/broll/jobs/7088f4d0642e/download/video_9x16.mp4",
+      "video_1x1": "http://localhost:8000/api/v1/broll/jobs/7088f4d0642e/download/video_1x1.mp4",
+      "captions_srt": "http://localhost:8000/api/v1/broll/jobs/7088f4d0642e/download/captions.srt",
+      "timeline_json": "http://localhost:8000/api/v1/broll/jobs/7088f4d0642e/download/timeline.json",
+      "manifest_json": "http://localhost:8000/api/v1/broll/jobs/7088f4d0642e/download/manifest.json"
+    },
+    "manifest": {
+      "job_id": "7088f4d0642e",
+      "status": "succeeded",
+      "created_at": "2026-10-24T10:54:20.516009+00:00",
+      "completed_at": "2026-10-24T10:54:30.328519+00:00",
+      "script": "आज हम बात करेंगे स्वास्थ्य के बारे में। नियमित व्यायाम और संतुलित आहार आपको स्वस्थ रखते हैं। हर दिन कम से कम तीस मिनट चलना चाहिए।",
+      "total_duration": 12.91,
+      "aspect_ratios": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "caption_style": "yellow",
+      "bgm": "ambient",
+      "scene_count": 1,
+      "clips_found": 1,
+      "timeline": [
+        {
+          "scene_index": 0,
+          "narration_text": "आज हम बात करेंगे स्वास्थ्य के बारे में। नियमित व्यायाम और संतुलित आहार आपको स्वस्थ रखते हैं। हर दिन कम से कम तीस मिनट चलना चाहिए।",
+          "start_time": 0.0,
+          "end_time": 12.91,
+          "duration": 12.91,
+          "keywords": [
+            "cinematic",
+            "nature"
+          ],
+          "matched_query": "cinematic health wellness lifestyle",
+          "clip": {
+            "scene_index": 0,
+            "narration_text": "आज हम बात करेंगे स्वास्थ्य के बारे में। नियमित व्यायाम और संतुलित आहार आपको स्वस्थ रखते हैं। हर दिन कम से कम तीस मिनट चलना चाहिए।",
+            "start_time": 0.0,
+            "end_time": 12.91,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #445",
+            "clip_url": "https://cdn.pixabay.com/video/2015/08/13/445-136216234_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/7088f4d0642e/download/thumb_0.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2015/08/13/445-136216234_tiny.jpg",
+            "attribution": "Footage by Vimeo-Free-Videos on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'cinematic health wellness lifestyle'"
+          }
+        }
+      ],
+      "models": {
+        "tts": "edge-tts / hi-IN-SwaraNeural",
+        "vision": "Exact Semantic Visual Action Mapping & CLIP compatible",
+        "asr": "Local Whisper sentence alignment"
+      },
+      "providers": {
+        "stock_footage": "Pixabay Video API v2 (Commercial License)",
+        "tts_provider": "Microsoft Cognitive Neural Voices",
+        "renderer": "FFmpeg libx264/AAC"
+      },
+      "timings": {
+        "total_sec": 9.81,
+        "narration_sec": 12.91,
+        "render_sec": 9.81
+      },
+      "cost_estimate_usd": 0.0,
+      "licence_summary": "100% Commercial Use Clean. Pixabay License (Attribution recorded per clip, no watermarks, safe for monetization).",
+      "output_files": {
+        "video_16x9.mp4": "http://localhost:8000/api/v1/broll/jobs/7088f4d0642e/download/video_16x9.mp4",
+        "video_9x16.mp4": "http://localhost:8000/api/v1/broll/jobs/7088f4d0642e/download/video_9x16.mp4",
+        "video_1x1.mp4": "http://localhost:8000/api/v1/broll/jobs/7088f4d0642e/download/video_1x1.mp4",
+        "narration.mp3": "http://localhost:8000/api/v1/broll/jobs/7088f4d0642e/download/narration.mp3",
+        "captions.srt": "http://localhost:8000/api/v1/broll/jobs/7088f4d0642e/download/captions.srt"
+      },
+      "engine": {
+        "tts": "edge-tts / hi-IN-SwaraNeural",
+        "footage": "Pixabay API v2 (Clean Commercial License)",
+        "scoring": "Exact Semantic Visual Action Mapping",
+        "assembly": "FFmpeg Concat Demuxer + Subtitle Burn + BGM Ducking",
+        "version": "1.2.0"
+      },
+      "metrics": {
+        "turnaround_sec": 9.81,
+        "cost_per_min": "$0.00 (License-Clean Free APIs)",
+        "coverage_pct": 100.0,
+        "reliability": "100% (No repeating clips, negative tag filter active)"
+      }
+    },
+    "manifest_url": "/api/v1/broll/jobs/7088f4d0642e/manifest"
+  },
+  "status": "succeeded",
+  "elapsed_sec": 10.57
+}

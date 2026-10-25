@@ -24,3 +24,4 @@ test_silent.mp3
 !docs/assets/*.srt
 !docs/assets/*.vtt
 !docs/assets/*.json
+!batch_results/*.json

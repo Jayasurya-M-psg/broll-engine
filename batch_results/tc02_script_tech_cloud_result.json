@@ -1,0 +1,189 @@
+{
+  "test_case": "tc02_script_tech_cloud",
+  "request": {
+    "script": "Cloud computing has changed the way businesses operate. Data travels across thousands of servers every second. Storage, speed, and security are the three pillars of modern infrastructure.",
+    "voice": "en-US-GuyNeural",
+    "aspect_ratios": [
+      "16:9",
+      "9:16"
+    ],
+    "style": "tech corporate clean",
+    "avoid": [],
+    "captions": {
+      "burn_in": false,
+      "srt": true
+    },
+    "_description": "TC02: Tech/cloud script, male voice, dual aspect ratios, SRT only"
+  },
+  "submitted_at": "2026-10-24T10:51:53.912539+00:00",
+  "job_id": "90b6fed7fbc6",
+  "submit_response": {
+    "job_id": "90b6fed7fbc6",
+    "status": "queued",
+    "poll_url": "/api/v1/broll/jobs/90b6fed7fbc6",
+    "status_url": "/api/v1/broll/jobs/90b6fed7fbc6",
+    "manifest_url": "/api/v1/broll/jobs/90b6fed7fbc6/manifest",
+    "idempotency_key": null
+  },
+  "final_status": {
+    "job_id": "90b6fed7fbc6",
+    "status": "succeeded",
+    "progress": 100,
+    "message": "✓ Video generated & assembled successfully matching your script!",
+    "created_at": "2026-10-24T10:51:53.915648+00:00",
+    "outputs": {
+      "video_16x9": "http://localhost:8000/api/v1/broll/jobs/90b6fed7fbc6/download/video_16x9.mp4",
+      "video_9x16": "http://localhost:8000/api/v1/broll/jobs/90b6fed7fbc6/download/video_9x16.mp4",
+      "video_1x1": "http://localhost:8000/api/v1/broll/jobs/90b6fed7fbc6/download/video_1x1.mp4",
+      "captions_srt": "http://localhost:8000/api/v1/broll/jobs/90b6fed7fbc6/download/captions.srt",
+      "timeline_json": "http://localhost:8000/api/v1/broll/jobs/90b6fed7fbc6/download/timeline.json",
+      "manifest_json": "http://localhost:8000/api/v1/broll/jobs/90b6fed7fbc6/download/manifest.json"
+    },
+    "manifest": {
+      "job_id": "90b6fed7fbc6",
+      "status": "succeeded",
+      "created_at": "2026-10-24T10:51:53.915648+00:00",
+      "completed_at": "2026-10-24T10:52:18.078974+00:00",
+      "script": "Cloud computing has changed the way businesses operate. Data travels across thousands of servers every second. Storage, speed, and security are the three pillars of modern infrastructure.",
+      "total_duration": 14.7,
+      "aspect_ratios": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "caption_style": "yellow",
+      "bgm": "ambient",
+      "scene_count": 3,
+      "clips_found": 3,
+      "timeline": [
+        {
+          "scene_index": 0,
+          "narration_text": "Cloud computing has changed the way businesses operate.",
+          "start_time": 0.0,
+          "end_time": 4.36,
+          "duration": 4.36,
+          "keywords": [
+            "cloud",
+            "computing",
+            "changed",
+            "businesses"
+          ],
+          "matched_query": "cloud computing",
+          "clip": {
+            "scene_index": 0,
+            "narration_text": "Cloud computing has changed the way businesses operate.",
+            "start_time": 0.0,
+            "end_time": 4.36,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #68978",
+            "clip_url": "https://cdn.pixabay.com/video/2021/03/25/68978-529861058_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/90b6fed7fbc6/download/thumb_0.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2021/03/25/68978-529861058_tiny.jpg",
+            "attribution": "Footage by CreativeWorlds99 on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'cloud computing'"
+          }
+        },
+        {
+          "scene_index": 1,
+          "narration_text": "Data travels across thousands of servers every second.",
+          "start_time": 4.36,
+          "end_time": 8.87,
+          "duration": 4.51,
+          "keywords": [
+            "data",
+            "travels",
+            "across",
+            "thousands"
+          ],
+          "matched_query": "programmer coding software laptop",
+          "clip": {
+            "scene_index": 1,
+            "narration_text": "Data travels across thousands of servers every second.",
+            "start_time": 4.36,
+            "end_time": 8.87,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #27706",
+            "clip_url": "https://cdn.pixabay.com/video/2019/10/09/27706-365890968_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/90b6fed7fbc6/download/thumb_1.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2019/10/09/27706-365890968_tiny.jpg",
+            "attribution": "Footage by Ceos_Stock on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'programmer coding software laptop'"
+          }
+        },
+        {
+          "scene_index": 2,
+          "narration_text": "Storage, speed, and security are the three pillars of modern infrastructure.",
+          "start_time": 8.87,
+          "end_time": 14.7,
+          "duration": 5.83,
+          "keywords": [
+            "storage",
+            "speed",
+            "security",
+            "three"
+          ],
+          "matched_query": "storage speed",
+          "clip": {
+            "scene_index": 2,
+            "narration_text": "Storage, speed, and security are the three pillars of modern infrastructure.",
+            "start_time": 8.87,
+            "end_time": 14.7,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #4942",
+            "clip_url": "https://cdn.pixabay.com/video/2016/09/05/4942-181472383_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/90b6fed7fbc6/download/thumb_2.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2016/09/05/4942-181472383_tiny.jpg",
+            "attribution": "Footage by motion5 on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'storage speed'"
+          }
+        }
+      ],
+      "models": {
+        "tts": "edge-tts / en-US-GuyNeural",
+        "vision": "Exact Semantic Visual Action Mapping & CLIP compatible",
+        "asr": "Local Whisper sentence alignment"
+      },
+      "providers": {
+        "stock_footage": "Pixabay Video API v2 (Commercial License)",
+        "tts_provider": "Microsoft Cognitive Neural Voices",
+        "renderer": "FFmpeg libx264/AAC"
+      },
+      "timings": {
+        "total_sec": 24.16,
+        "narration_sec": 14.7,
+        "render_sec": 24.16
+      },
+      "cost_estimate_usd": 0.0,
+      "licence_summary": "100% Commercial Use Clean. Pixabay License (Attribution recorded per clip, no watermarks, safe for monetization).",
+      "output_files": {
+        "video_16x9.mp4": "http://localhost:8000/api/v1/broll/jobs/90b6fed7fbc6/download/video_16x9.mp4",
+        "video_9x16.mp4": "http://localhost:8000/api/v1/broll/jobs/90b6fed7fbc6/download/video_9x16.mp4",
+        "video_1x1.mp4": "http://localhost:8000/api/v1/broll/jobs/90b6fed7fbc6/download/video_1x1.mp4",
+        "narration.mp3": "http://localhost:8000/api/v1/broll/jobs/90b6fed7fbc6/download/narration.mp3",
+        "captions.srt": "http://localhost:8000/api/v1/broll/jobs/90b6fed7fbc6/download/captions.srt"
+      },
+      "engine": {
+        "tts": "edge-tts / en-US-GuyNeural",
+        "footage": "Pixabay API v2 (Clean Commercial License)",
+        "scoring": "Exact Semantic Visual Action Mapping",
+        "assembly": "FFmpeg Concat Demuxer + Subtitle Burn + BGM Ducking",
+        "version": "1.2.0"
+      },
+      "metrics": {
+        "turnaround_sec": 24.16,
+        "cost_per_min": "$0.00 (License-Clean Free APIs)",
+        "coverage_pct": 100.0,
+        "reliability": "100% (No repeating clips, negative tag filter active)"
+      }
+    },
+    "manifest_url": "/api/v1/broll/jobs/90b6fed7fbc6/manifest"
+  },
+  "status": "succeeded",
+  "elapsed_sec": 26.12
+}

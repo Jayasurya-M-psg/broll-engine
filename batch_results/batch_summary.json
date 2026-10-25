@@ -1,0 +1,59 @@
+{
+  "run_at": "2026-10-24T10:58:12.235889+00:00",
+  "base_url": "http://localhost:8000",
+  "total_cases": 10,
+  "passed": 10,
+  "failed": 0,
+  "results": [
+    {
+      "test_case": "tc01_script_finance",
+      "status": "succeeded",
+      "elapsed_sec": 26.61
+    },
+    {
+      "test_case": "tc02_script_tech_cloud",
+      "status": "succeeded",
+      "elapsed_sec": 26.12
+    },
+    {
+      "test_case": "tc03_script_coding_tutorial",
+      "status": "succeeded",
+      "elapsed_sec": 25.84
+    },
+    {
+      "test_case": "tc04_hard_statistics_abstract",
+      "status": "succeeded",
+      "elapsed_sec": 36.92
+    },
+    {
+      "test_case": "tc05_environment_portrait",
+      "status": "succeeded",
+      "elapsed_sec": 41.89
+    },
+    {
+      "test_case": "tc06_hard_person_square",
+      "status": "succeeded",
+      "elapsed_sec": 15.82
+    },
+    {
+      "test_case": "tc07_hindi_multilingual",
+      "status": "succeeded",
+      "elapsed_sec": 10.57
+    },
+    {
+      "test_case": "tc08_travel_promo",
+      "status": "succeeded",
+      "elapsed_sec": 15.82
+    },
+    {
+      "test_case": "tc09_hard_double_meaning",
+      "status": "succeeded",
+      "elapsed_sec": 37.23
+    },
+    {
+      "test_case": "tc10_scene_list_ai",
+      "status": "succeeded",
+      "elapsed_sec": 37.14
+    }
+  ]
+}

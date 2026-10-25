@@ -1,0 +1,188 @@
+{
+  "test_case": "tc06_hard_person_square",
+  "request": {
+    "script": "A young entrepreneur launched a startup with nothing but an idea and a laptop. Within two years, the company raised ten million dollars in funding. Today, it serves customers in over thirty countries.",
+    "voice": "en-US-GuyNeural",
+    "aspect_ratios": [
+      "1:1"
+    ],
+    "style": "startup entrepreneurship office modern",
+    "avoid": [],
+    "captions": {
+      "burn_in": false,
+      "srt": true
+    },
+    "_description": "TC06: HARD CASE — real person mentioned ('young entrepreneur'), 1:1 square aspect"
+  },
+  "submitted_at": "2026-10-24T10:54:04.689855+00:00",
+  "job_id": "9a72243dcca6",
+  "submit_response": {
+    "job_id": "9a72243dcca6",
+    "status": "queued",
+    "poll_url": "/api/v1/broll/jobs/9a72243dcca6",
+    "status_url": "/api/v1/broll/jobs/9a72243dcca6",
+    "manifest_url": "/api/v1/broll/jobs/9a72243dcca6/manifest",
+    "idempotency_key": null
+  },
+  "final_status": {
+    "job_id": "9a72243dcca6",
+    "status": "succeeded",
+    "progress": 100,
+    "message": "✓ Video generated & assembled successfully matching your script!",
+    "created_at": "2026-10-24T10:54:04.690995+00:00",
+    "outputs": {
+      "video_16x9": "http://localhost:8000/api/v1/broll/jobs/9a72243dcca6/download/video_16x9.mp4",
+      "video_9x16": "http://localhost:8000/api/v1/broll/jobs/9a72243dcca6/download/video_9x16.mp4",
+      "video_1x1": "http://localhost:8000/api/v1/broll/jobs/9a72243dcca6/download/video_1x1.mp4",
+      "captions_srt": "http://localhost:8000/api/v1/broll/jobs/9a72243dcca6/download/captions.srt",
+      "timeline_json": "http://localhost:8000/api/v1/broll/jobs/9a72243dcca6/download/timeline.json",
+      "manifest_json": "http://localhost:8000/api/v1/broll/jobs/9a72243dcca6/download/manifest.json"
+    },
+    "manifest": {
+      "job_id": "9a72243dcca6",
+      "status": "succeeded",
+      "created_at": "2026-10-24T10:54:04.690995+00:00",
+      "completed_at": "2026-10-24T10:54:16.907882+00:00",
+      "script": "A young entrepreneur launched a startup with nothing but an idea and a laptop. Within two years, the company raised ten million dollars in funding. Today, it serves customers in over thirty countries.",
+      "total_duration": 14.87,
+      "aspect_ratios": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "caption_style": "yellow",
+      "bgm": "ambient",
+      "scene_count": 3,
+      "clips_found": 3,
+      "timeline": [
+        {
+          "scene_index": 0,
+          "narration_text": "A young entrepreneur launched a startup with nothing but an idea and a laptop.",
+          "start_time": 0.0,
+          "end_time": 5.42,
+          "duration": 5.42,
+          "keywords": [
+            "young",
+            "entrepreneur",
+            "launched",
+            "startup"
+          ],
+          "matched_query": "young entrepreneur",
+          "clip": {
+            "scene_index": 0,
+            "narration_text": "A young entrepreneur launched a startup with nothing but an idea and a laptop.",
+            "start_time": 0.0,
+            "end_time": 5.42,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #130646",
+            "clip_url": "https://cdn.pixabay.com/video/2022/09/08/130646-747868367_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/9a72243dcca6/download/thumb_0.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2022/09/08/130646-747868367_tiny.jpg",
+            "attribution": "Footage by SYG_Anime on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'young entrepreneur'"
+          }
+        },
+        {
+          "scene_index": 1,
+          "narration_text": "Within two years, the company raised ten million dollars in funding.",
+          "start_time": 5.42,
+          "end_time": 10.43,
+          "duration": 5.01,
+          "keywords": [
+            "within",
+            "two",
+            "years",
+            "company"
+          ],
+          "matched_query": "within two",
+          "clip": {
+            "scene_index": 1,
+            "narration_text": "Within two years, the company raised ten million dollars in funding.",
+            "start_time": 5.42,
+            "end_time": 10.43,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #1083",
+            "clip_url": "https://cdn.pixabay.com/video/2015/10/18/1083-142790258_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/9a72243dcca6/download/thumb_1.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2015/10/18/1083-142790258_tiny.jpg",
+            "attribution": "Footage by Vimeo-Free-Videos on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'within two'"
+          }
+        },
+        {
+          "scene_index": 2,
+          "narration_text": "Today, it serves customers in over thirty countries.",
+          "start_time": 10.43,
+          "end_time": 14.87,
+          "duration": 4.44,
+          "keywords": [
+            "today",
+            "serves",
+            "customers",
+            "thirty"
+          ],
+          "matched_query": "today serves",
+          "clip": {
+            "scene_index": 2,
+            "narration_text": "Today, it serves customers in over thirty countries.",
+            "start_time": 10.43,
+            "end_time": 14.87,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #259142",
+            "clip_url": "https://cdn.pixabay.com/video/2025/02/18/259142_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/9a72243dcca6/download/thumb_2.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2025/02/18/259142_tiny.jpg",
+            "attribution": "Footage by julientromeur on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'today serves'"
+          }
+        }
+      ],
+      "models": {
+        "tts": "edge-tts / en-US-GuyNeural",
+        "vision": "Exact Semantic Visual Action Mapping & CLIP compatible",
+        "asr": "Local Whisper sentence alignment"
+      },
+      "providers": {
+        "stock_footage": "Pixabay Video API v2 (Commercial License)",
+        "tts_provider": "Microsoft Cognitive Neural Voices",
+        "renderer": "FFmpeg libx264/AAC"
+      },
+      "timings": {
+        "total_sec": 12.22,
+        "narration_sec": 14.87,
+        "render_sec": 12.22
+      },
+      "cost_estimate_usd": 0.0,
+      "licence_summary": "100% Commercial Use Clean. Pixabay License (Attribution recorded per clip, no watermarks, safe for monetization).",
+      "output_files": {
+        "video_16x9.mp4": "http://localhost:8000/api/v1/broll/jobs/9a72243dcca6/download/video_16x9.mp4",
+        "video_9x16.mp4": "http://localhost:8000/api/v1/broll/jobs/9a72243dcca6/download/video_9x16.mp4",
+        "video_1x1.mp4": "http://localhost:8000/api/v1/broll/jobs/9a72243dcca6/download/video_1x1.mp4",
+        "narration.mp3": "http://localhost:8000/api/v1/broll/jobs/9a72243dcca6/download/narration.mp3",
+        "captions.srt": "http://localhost:8000/api/v1/broll/jobs/9a72243dcca6/download/captions.srt"
+      },
+      "engine": {
+        "tts": "edge-tts / en-US-GuyNeural",
+        "footage": "Pixabay API v2 (Clean Commercial License)",
+        "scoring": "Exact Semantic Visual Action Mapping",
+        "assembly": "FFmpeg Concat Demuxer + Subtitle Burn + BGM Ducking",
+        "version": "1.2.0"
+      },
+      "metrics": {
+        "turnaround_sec": 12.22,
+        "cost_per_min": "$0.00 (License-Clean Free APIs)",
+        "coverage_pct": 100.0,
+        "reliability": "100% (No repeating clips, negative tag filter active)"
+      }
+    },
+    "manifest_url": "/api/v1/broll/jobs/9a72243dcca6/manifest"
+  },
+  "status": "succeeded",
+  "elapsed_sec": 15.82
+}

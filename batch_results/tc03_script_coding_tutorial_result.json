@@ -1,0 +1,188 @@
+{
+  "test_case": "tc03_script_coding_tutorial",
+  "request": {
+    "script": "Python is one of the most popular programming languages in the world. Developers use it for web development, data science, and artificial intelligence. Its simple syntax makes it perfect for beginners.",
+    "voice": "en-US-JennyNeural",
+    "aspect_ratios": [
+      "16:9"
+    ],
+    "style": "education tutorial coding",
+    "avoid": [],
+    "captions": {
+      "burn_in": true,
+      "srt": true
+    },
+    "_description": "TC03: Tutorial/education, avoid faces, coding theme"
+  },
+  "submitted_at": "2026-10-24T10:52:20.034643+00:00",
+  "job_id": "6e4292ce901a",
+  "submit_response": {
+    "job_id": "6e4292ce901a",
+    "status": "queued",
+    "poll_url": "/api/v1/broll/jobs/6e4292ce901a",
+    "status_url": "/api/v1/broll/jobs/6e4292ce901a",
+    "manifest_url": "/api/v1/broll/jobs/6e4292ce901a/manifest",
+    "idempotency_key": null
+  },
+  "final_status": {
+    "job_id": "6e4292ce901a",
+    "status": "succeeded",
+    "progress": 100,
+    "message": "✓ Video generated & assembled successfully matching your script!",
+    "created_at": "2026-10-24T10:52:20.037482+00:00",
+    "outputs": {
+      "video_16x9": "http://localhost:8000/api/v1/broll/jobs/6e4292ce901a/download/video_16x9.mp4",
+      "video_9x16": "http://localhost:8000/api/v1/broll/jobs/6e4292ce901a/download/video_9x16.mp4",
+      "video_1x1": "http://localhost:8000/api/v1/broll/jobs/6e4292ce901a/download/video_1x1.mp4",
+      "captions_srt": "http://localhost:8000/api/v1/broll/jobs/6e4292ce901a/download/captions.srt",
+      "timeline_json": "http://localhost:8000/api/v1/broll/jobs/6e4292ce901a/download/timeline.json",
+      "manifest_json": "http://localhost:8000/api/v1/broll/jobs/6e4292ce901a/download/manifest.json"
+    },
+    "manifest": {
+      "job_id": "6e4292ce901a",
+      "status": "succeeded",
+      "created_at": "2026-10-24T10:52:20.037482+00:00",
+      "completed_at": "2026-10-24T10:52:45.468349+00:00",
+      "script": "Python is one of the most popular programming languages in the world. Developers use it for web development, data science, and artificial intelligence. Its simple syntax makes it perfect for beginners.",
+      "total_duration": 15.34,
+      "aspect_ratios": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "caption_style": "yellow",
+      "bgm": "ambient",
+      "scene_count": 3,
+      "clips_found": 3,
+      "timeline": [
+        {
+          "scene_index": 0,
+          "narration_text": "Python is one of the most popular programming languages in the world.",
+          "start_time": 0.0,
+          "end_time": 4.89,
+          "duration": 4.89,
+          "keywords": [
+            "python",
+            "popular",
+            "programming",
+            "languages"
+          ],
+          "matched_query": "reading book study library",
+          "clip": {
+            "scene_index": 0,
+            "narration_text": "Python is one of the most popular programming languages in the world.",
+            "start_time": 0.0,
+            "end_time": 4.89,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #846",
+            "clip_url": "https://cdn.pixabay.com/video/2015/09/27/846-140823862_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/6e4292ce901a/download/thumb_0.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2015/09/27/846-140823862_tiny.jpg",
+            "attribution": "Footage by klimkin on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'reading book study library'"
+          }
+        },
+        {
+          "scene_index": 1,
+          "narration_text": "Developers use it for web development, data science, and artificial intelligence.",
+          "start_time": 4.89,
+          "end_time": 11.1,
+          "duration": 6.21,
+          "keywords": [
+            "developers",
+            "use",
+            "web",
+            "development"
+          ],
+          "matched_query": "programmer coding software laptop",
+          "clip": {
+            "scene_index": 1,
+            "narration_text": "Developers use it for web development, data science, and artificial intelligence.",
+            "start_time": 4.89,
+            "end_time": 11.1,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #27706",
+            "clip_url": "https://cdn.pixabay.com/video/2019/10/09/27706-365890968_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/6e4292ce901a/download/thumb_1.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2019/10/09/27706-365890968_tiny.jpg",
+            "attribution": "Footage by Ceos_Stock on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'programmer coding software laptop'"
+          }
+        },
+        {
+          "scene_index": 2,
+          "narration_text": "Its simple syntax makes it perfect for beginners.",
+          "start_time": 11.1,
+          "end_time": 15.34,
+          "duration": 4.24,
+          "keywords": [
+            "simple",
+            "syntax",
+            "makes",
+            "perfect"
+          ],
+          "matched_query": "simple syntax",
+          "clip": {
+            "scene_index": 2,
+            "narration_text": "Its simple syntax makes it perfect for beginners.",
+            "start_time": 11.1,
+            "end_time": 15.34,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #120",
+            "clip_url": "https://cdn.pixabay.com/video/2015/08/08/120-135736520_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/6e4292ce901a/download/thumb_2.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2015/08/08/120-135736520_tiny.jpg",
+            "attribution": "Footage by Coverr-Free-Footage on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'simple syntax'"
+          }
+        }
+      ],
+      "models": {
+        "tts": "edge-tts / en-US-JennyNeural",
+        "vision": "Exact Semantic Visual Action Mapping & CLIP compatible",
+        "asr": "Local Whisper sentence alignment"
+      },
+      "providers": {
+        "stock_footage": "Pixabay Video API v2 (Commercial License)",
+        "tts_provider": "Microsoft Cognitive Neural Voices",
+        "renderer": "FFmpeg libx264/AAC"
+      },
+      "timings": {
+        "total_sec": 25.43,
+        "narration_sec": 15.34,
+        "render_sec": 25.43
+      },
+      "cost_estimate_usd": 0.0,
+      "licence_summary": "100% Commercial Use Clean. Pixabay License (Attribution recorded per clip, no watermarks, safe for monetization).",
+      "output_files": {
+        "video_16x9.mp4": "http://localhost:8000/api/v1/broll/jobs/6e4292ce901a/download/video_16x9.mp4",
+        "video_9x16.mp4": "http://localhost:8000/api/v1/broll/jobs/6e4292ce901a/download/video_9x16.mp4",
+        "video_1x1.mp4": "http://localhost:8000/api/v1/broll/jobs/6e4292ce901a/download/video_1x1.mp4",
+        "narration.mp3": "http://localhost:8000/api/v1/broll/jobs/6e4292ce901a/download/narration.mp3",
+        "captions.srt": "http://localhost:8000/api/v1/broll/jobs/6e4292ce901a/download/captions.srt"
+      },
+      "engine": {
+        "tts": "edge-tts / en-US-JennyNeural",
+        "footage": "Pixabay API v2 (Clean Commercial License)",
+        "scoring": "Exact Semantic Visual Action Mapping",
+        "assembly": "FFmpeg Concat Demuxer + Subtitle Burn + BGM Ducking",
+        "version": "1.2.0"
+      },
+      "metrics": {
+        "turnaround_sec": 25.43,
+        "cost_per_min": "$0.00 (License-Clean Free APIs)",
+        "coverage_pct": 100.0,
+        "reliability": "100% (No repeating clips, negative tag filter active)"
+      }
+    },
+    "manifest_url": "/api/v1/broll/jobs/6e4292ce901a/manifest"
+  },
+  "status": "succeeded",
+  "elapsed_sec": 25.84
+}

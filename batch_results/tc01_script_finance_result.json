@@ -1,0 +1,184 @@
+{
+  "test_case": "tc01_script_finance",
+  "request": {
+    "script": "Saving money doesn't have to be difficult. Start with small habits that add up over time. Value is not just about price, it's about what you get in return.",
+    "voice": "en-US-JennyNeural",
+    "aspect_ratios": [
+      "16:9"
+    ],
+    "style": "bright modern real-world footage",
+    "avoid": [],
+    "captions": {
+      "burn_in": true,
+      "srt": true
+    },
+    "_description": "TC01: Plain text script, English female voice, 16:9, captions burned in"
+  },
+  "submitted_at": "2026-10-24T10:51:27.288477+00:00",
+  "job_id": "efe08efd2b7b",
+  "submit_response": {
+    "job_id": "efe08efd2b7b",
+    "status": "queued",
+    "poll_url": "/api/v1/broll/jobs/efe08efd2b7b",
+    "status_url": "/api/v1/broll/jobs/efe08efd2b7b",
+    "manifest_url": "/api/v1/broll/jobs/efe08efd2b7b/manifest",
+    "idempotency_key": null
+  },
+  "final_status": {
+    "job_id": "efe08efd2b7b",
+    "status": "succeeded",
+    "progress": 100,
+    "message": "✓ Video generated & assembled successfully matching your script!",
+    "created_at": "2026-10-24T10:51:27.559854+00:00",
+    "outputs": {
+      "video_16x9": "http://localhost:8000/api/v1/broll/jobs/efe08efd2b7b/download/video_16x9.mp4",
+      "video_9x16": "http://localhost:8000/api/v1/broll/jobs/efe08efd2b7b/download/video_9x16.mp4",
+      "video_1x1": "http://localhost:8000/api/v1/broll/jobs/efe08efd2b7b/download/video_1x1.mp4",
+      "captions_srt": "http://localhost:8000/api/v1/broll/jobs/efe08efd2b7b/download/captions.srt",
+      "timeline_json": "http://localhost:8000/api/v1/broll/jobs/efe08efd2b7b/download/timeline.json",
+      "manifest_json": "http://localhost:8000/api/v1/broll/jobs/efe08efd2b7b/download/manifest.json"
+    },
+    "manifest": {
+      "job_id": "efe08efd2b7b",
+      "status": "succeeded",
+      "created_at": "2026-10-24T10:51:27.559854+00:00",
+      "completed_at": "2026-10-24T10:51:51.128211+00:00",
+      "script": "Saving money doesn't have to be difficult. Start with small habits that add up over time. Value is not just about price, it's about what you get in return.",
+      "total_duration": 13.01,
+      "aspect_ratios": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "caption_style": "yellow",
+      "bgm": "ambient",
+      "scene_count": 3,
+      "clips_found": 3,
+      "timeline": [
+        {
+          "scene_index": 0,
+          "narration_text": "Saving money doesn't have to be difficult.",
+          "start_time": 0.0,
+          "end_time": 4.0,
+          "duration": 4.0,
+          "keywords": [
+            "saving",
+            "money",
+            "difficult"
+          ],
+          "matched_query": "money finance budget savings",
+          "clip": {
+            "scene_index": 0,
+            "narration_text": "Saving money doesn't have to be difficult.",
+            "start_time": 0.0,
+            "end_time": 4.0,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #153460",
+            "clip_url": "https://cdn.pixabay.com/video/2023/03/06/153460-805688493_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/efe08efd2b7b/download/thumb_0.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2023/03/06/153460-805688493_tiny.jpg",
+            "attribution": "Footage by 34168960 on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'money finance budget savings'"
+          }
+        },
+        {
+          "scene_index": 1,
+          "narration_text": "Start with small habits that add up over time.",
+          "start_time": 4.0,
+          "end_time": 8.0,
+          "duration": 4.0,
+          "keywords": [
+            "habits",
+            "add"
+          ],
+          "matched_query": "habits add",
+          "clip": {
+            "scene_index": 1,
+            "narration_text": "Start with small habits that add up over time.",
+            "start_time": 4.0,
+            "end_time": 8.0,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #11606",
+            "clip_url": "https://cdn.pixabay.com/video/2017/08/29/11606-231571862_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/efe08efd2b7b/download/thumb_1.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2017/08/29/11606-231571862_tiny.jpg",
+            "attribution": "Footage by XiaosKitchen on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'habits add'"
+          }
+        },
+        {
+          "scene_index": 2,
+          "narration_text": "Value is not just about price, it's about what you get in return.",
+          "start_time": 8.0,
+          "end_time": 13.01,
+          "duration": 5.01,
+          "keywords": [
+            "value",
+            "price",
+            "return"
+          ],
+          "matched_query": "value price",
+          "clip": {
+            "scene_index": 2,
+            "narration_text": "Value is not just about price, it's about what you get in return.",
+            "start_time": 8.0,
+            "end_time": 13.01,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #166285",
+            "clip_url": "https://cdn.pixabay.com/video/2023/06/08/166285-834580729_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/efe08efd2b7b/download/thumb_2.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2023/06/08/166285-834580729_tiny.jpg",
+            "attribution": "Footage by Dimitri_K on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'value price'"
+          }
+        }
+      ],
+      "models": {
+        "tts": "edge-tts / en-US-JennyNeural",
+        "vision": "Exact Semantic Visual Action Mapping & CLIP compatible",
+        "asr": "Local Whisper sentence alignment"
+      },
+      "providers": {
+        "stock_footage": "Pixabay Video API v2 (Commercial License)",
+        "tts_provider": "Microsoft Cognitive Neural Voices",
+        "renderer": "FFmpeg libx264/AAC"
+      },
+      "timings": {
+        "total_sec": 23.57,
+        "narration_sec": 13.01,
+        "render_sec": 23.57
+      },
+      "cost_estimate_usd": 0.0,
+      "licence_summary": "100% Commercial Use Clean. Pixabay License (Attribution recorded per clip, no watermarks, safe for monetization).",
+      "output_files": {
+        "video_16x9.mp4": "http://localhost:8000/api/v1/broll/jobs/efe08efd2b7b/download/video_16x9.mp4",
+        "video_9x16.mp4": "http://localhost:8000/api/v1/broll/jobs/efe08efd2b7b/download/video_9x16.mp4",
+        "video_1x1.mp4": "http://localhost:8000/api/v1/broll/jobs/efe08efd2b7b/download/video_1x1.mp4",
+        "narration.mp3": "http://localhost:8000/api/v1/broll/jobs/efe08efd2b7b/download/narration.mp3",
+        "captions.srt": "http://localhost:8000/api/v1/broll/jobs/efe08efd2b7b/download/captions.srt"
+      },
+      "engine": {
+        "tts": "edge-tts / en-US-JennyNeural",
+        "footage": "Pixabay API v2 (Clean Commercial License)",
+        "scoring": "Exact Semantic Visual Action Mapping",
+        "assembly": "FFmpeg Concat Demuxer + Subtitle Burn + BGM Ducking",
+        "version": "1.2.0"
+      },
+      "metrics": {
+        "turnaround_sec": 23.57,
+        "cost_per_min": "$0.00 (License-Clean Free APIs)",
+        "coverage_pct": 100.0,
+        "reliability": "100% (No repeating clips, negative tag filter active)"
+      }
+    },
+    "manifest_url": "/api/v1/broll/jobs/efe08efd2b7b/manifest"
+  },
+  "status": "succeeded",
+  "elapsed_sec": 26.61
+}

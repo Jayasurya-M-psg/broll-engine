@@ -1,0 +1,236 @@
+{
+  "test_case": "tc10_scene_list_ai",
+  "request": {
+    "scenes": [
+      {
+        "text": "Welcome to the future of artificial intelligence.",
+        "visual_hint": "futuristic technology"
+      },
+      {
+        "text": "Machine learning models are becoming more powerful every year.",
+        "visual_hint": "data servers computers"
+      },
+      {
+        "text": "The applications are limitless — from healthcare to education.",
+        "visual_hint": "medical technology education"
+      },
+      {
+        "text": "Join us as we explore what is possible.",
+        "visual_hint": "innovation collaboration"
+      }
+    ],
+    "script": "Welcome to the future of artificial intelligence. Machine learning models are becoming more powerful every year. The applications are limitless — from healthcare to education. Join us as we explore what is possible.",
+    "voice": "en-US-JennyNeural",
+    "aspect_ratios": [
+      "16:9"
+    ],
+    "style": "technology AI futuristic",
+    "avoid": [
+      "people's faces"
+    ],
+    "captions": {
+      "burn_in": false,
+      "srt": true
+    },
+    "_description": "TC10: Scene list input with visual hints (Advanced level feature)"
+  },
+  "submitted_at": "2026-10-24T10:55:01.984405+00:00",
+  "job_id": "4df145de5e92",
+  "submit_response": {
+    "job_id": "4df145de5e92",
+    "status": "queued",
+    "poll_url": "/api/v1/broll/jobs/4df145de5e92",
+    "status_url": "/api/v1/broll/jobs/4df145de5e92",
+    "manifest_url": "/api/v1/broll/jobs/4df145de5e92/manifest",
+    "idempotency_key": null
+  },
+  "final_status": {
+    "job_id": "4df145de5e92",
+    "status": "succeeded",
+    "progress": 100,
+    "message": "✓ Video generated & assembled successfully matching your script!",
+    "created_at": "2026-10-24T10:55:02.256846+00:00",
+    "outputs": {
+      "video_16x9": "http://localhost:8000/api/v1/broll/jobs/4df145de5e92/download/video_16x9.mp4",
+      "video_9x16": "http://localhost:8000/api/v1/broll/jobs/4df145de5e92/download/video_9x16.mp4",
+      "video_1x1": "http://localhost:8000/api/v1/broll/jobs/4df145de5e92/download/video_1x1.mp4",
+      "captions_srt": "http://localhost:8000/api/v1/broll/jobs/4df145de5e92/download/captions.srt",
+      "timeline_json": "http://localhost:8000/api/v1/broll/jobs/4df145de5e92/download/timeline.json",
+      "manifest_json": "http://localhost:8000/api/v1/broll/jobs/4df145de5e92/download/manifest.json"
+    },
+    "manifest": {
+      "job_id": "4df145de5e92",
+      "status": "succeeded",
+      "created_at": "2026-10-24T10:55:02.256846+00:00",
+      "completed_at": "2026-10-24T10:55:37.366587+00:00",
+      "script": "Welcome to the future of artificial intelligence. Machine learning models are becoming more powerful every year. The applications are limitless — from healthcare to education. Join us as we explore what is possible.",
+      "total_duration": 17.54,
+      "aspect_ratios": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "caption_style": "yellow",
+      "bgm": "ambient",
+      "scene_count": 4,
+      "clips_found": 4,
+      "timeline": [
+        {
+          "scene_index": 0,
+          "narration_text": "Welcome to the future of artificial intelligence.",
+          "start_time": 0.0,
+          "end_time": 4.0,
+          "duration": 4.0,
+          "keywords": [
+            "welcome",
+            "future",
+            "artificial",
+            "intelligence"
+          ],
+          "matched_query": "futuristic technology",
+          "clip": {
+            "scene_index": 0,
+            "narration_text": "Welcome to the future of artificial intelligence.",
+            "start_time": 0.0,
+            "end_time": 4.0,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #230482",
+            "clip_url": "https://cdn.pixabay.com/video/2024/09/09/230482_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/4df145de5e92/download/thumb_0.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2024/09/09/230482_tiny.jpg",
+            "attribution": "Footage by AdisResic on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'futuristic technology'"
+          }
+        },
+        {
+          "scene_index": 1,
+          "narration_text": "Machine learning models are becoming more powerful every year.",
+          "start_time": 4.0,
+          "end_time": 8.7,
+          "duration": 4.7,
+          "keywords": [
+            "machine",
+            "learning",
+            "models",
+            "becoming"
+          ],
+          "matched_query": "data servers computers",
+          "clip": {
+            "scene_index": 1,
+            "narration_text": "Machine learning models are becoming more powerful every year.",
+            "start_time": 4.0,
+            "end_time": 8.7,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #4001",
+            "clip_url": "https://cdn.pixabay.com/video/2016/07/25/4001-176277735_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/4df145de5e92/download/thumb_1.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2016/07/25/4001-176277735_tiny.jpg",
+            "attribution": "Footage by FindingFootage on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'data servers computers'"
+          }
+        },
+        {
+          "scene_index": 2,
+          "narration_text": "The applications are limitless — from healthcare to education.",
+          "start_time": 8.7,
+          "end_time": 13.54,
+          "duration": 4.84,
+          "keywords": [
+            "applications",
+            "limitless",
+            "healthcare",
+            "education"
+          ],
+          "matched_query": "medical technology education",
+          "clip": {
+            "scene_index": 2,
+            "narration_text": "The applications are limitless — from healthcare to education.",
+            "start_time": 8.7,
+            "end_time": 13.54,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #262188",
+            "clip_url": "https://cdn.pixabay.com/video/2025/03/03/262188_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/4df145de5e92/download/thumb_2.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2025/03/03/262188_tiny.jpg",
+            "attribution": "Footage by Kost9n4 on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'medical technology education'"
+          }
+        },
+        {
+          "scene_index": 3,
+          "narration_text": "Join us as we explore what is possible.",
+          "start_time": 13.54,
+          "end_time": 17.54,
+          "duration": 4.0,
+          "keywords": [
+            "join",
+            "explore",
+            "possible"
+          ],
+          "matched_query": "innovation collaboration",
+          "clip": {
+            "scene_index": 3,
+            "narration_text": "Join us as we explore what is possible.",
+            "start_time": 13.54,
+            "end_time": 17.54,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #277094",
+            "clip_url": "https://cdn.pixabay.com/video/2025/05/06/277094_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/4df145de5e92/download/thumb_3.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2025/05/06/277094_tiny.jpg",
+            "attribution": "Footage by fspik on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'innovation collaboration'"
+          }
+        }
+      ],
+      "models": {
+        "tts": "edge-tts / en-US-JennyNeural",
+        "vision": "Exact Semantic Visual Action Mapping & CLIP compatible",
+        "asr": "Local Whisper sentence alignment"
+      },
+      "providers": {
+        "stock_footage": "Pixabay Video API v2 (Commercial License)",
+        "tts_provider": "Microsoft Cognitive Neural Voices",
+        "renderer": "FFmpeg libx264/AAC"
+      },
+      "timings": {
+        "total_sec": 35.11,
+        "narration_sec": 17.54,
+        "render_sec": 35.11
+      },
+      "cost_estimate_usd": 0.0,
+      "licence_summary": "100% Commercial Use Clean. Pixabay License (Attribution recorded per clip, no watermarks, safe for monetization).",
+      "output_files": {
+        "video_16x9.mp4": "http://localhost:8000/api/v1/broll/jobs/4df145de5e92/download/video_16x9.mp4",
+        "video_9x16.mp4": "http://localhost:8000/api/v1/broll/jobs/4df145de5e92/download/video_9x16.mp4",
+        "video_1x1.mp4": "http://localhost:8000/api/v1/broll/jobs/4df145de5e92/download/video_1x1.mp4",
+        "narration.mp3": "http://localhost:8000/api/v1/broll/jobs/4df145de5e92/download/narration.mp3",
+        "captions.srt": "http://localhost:8000/api/v1/broll/jobs/4df145de5e92/download/captions.srt"
+      },
+      "engine": {
+        "tts": "edge-tts / en-US-JennyNeural",
+        "footage": "Pixabay API v2 (Clean Commercial License)",
+        "scoring": "Exact Semantic Visual Action Mapping",
+        "assembly": "FFmpeg Concat Demuxer + Subtitle Burn + BGM Ducking",
+        "version": "1.2.0"
+      },
+      "metrics": {
+        "turnaround_sec": 35.11,
+        "cost_per_min": "$0.00 (License-Clean Free APIs)",
+        "coverage_pct": 100.0,
+        "reliability": "100% (No repeating clips, negative tag filter active)"
+      }
+    },
+    "manifest_url": "/api/v1/broll/jobs/4df145de5e92/manifest"
+  },
+  "status": "succeeded",
+  "elapsed_sec": 37.14
+}

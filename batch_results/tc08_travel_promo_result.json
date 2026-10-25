@@ -1,0 +1,192 @@
+{
+  "test_case": "tc08_travel_promo",
+  "request": {
+    "script": "Travel opens your mind to new cultures and experiences. From the mountains of Nepal to the beaches of Thailand, every destination has a story to tell. Pack your bags and explore the world.",
+    "voice": "en-AU-NatashaNeural",
+    "aspect_ratios": [
+      "16:9",
+      "9:16"
+    ],
+    "style": "travel adventure landscape cinematic",
+    "avoid": [
+      "alcohol",
+      "weapons"
+    ],
+    "captions": {
+      "burn_in": false,
+      "srt": true
+    },
+    "_description": "TC08: Travel promo, Australian accent, dual ratios, safety avoids"
+  },
+  "submitted_at": "2026-10-24T10:56:45.753905+00:00",
+  "job_id": "ecee990ddeeb",
+  "submit_response": {
+    "job_id": "ecee990ddeeb",
+    "status": "queued",
+    "poll_url": "/api/v1/broll/jobs/ecee990ddeeb",
+    "status_url": "/api/v1/broll/jobs/ecee990ddeeb",
+    "manifest_url": "/api/v1/broll/jobs/ecee990ddeeb/manifest",
+    "idempotency_key": null
+  },
+  "final_status": {
+    "job_id": "ecee990ddeeb",
+    "status": "succeeded",
+    "progress": 100,
+    "message": "✓ Video generated & assembled successfully matching your script!",
+    "created_at": "2026-10-24T10:56:46.011245+00:00",
+    "outputs": {
+      "video_16x9": "http://localhost:8000/api/v1/broll/jobs/ecee990ddeeb/download/video_16x9.mp4",
+      "video_9x16": "http://localhost:8000/api/v1/broll/jobs/ecee990ddeeb/download/video_9x16.mp4",
+      "video_1x1": "http://localhost:8000/api/v1/broll/jobs/ecee990ddeeb/download/video_1x1.mp4",
+      "captions_srt": "http://localhost:8000/api/v1/broll/jobs/ecee990ddeeb/download/captions.srt",
+      "timeline_json": "http://localhost:8000/api/v1/broll/jobs/ecee990ddeeb/download/timeline.json",
+      "manifest_json": "http://localhost:8000/api/v1/broll/jobs/ecee990ddeeb/download/manifest.json"
+    },
+    "manifest": {
+      "job_id": "ecee990ddeeb",
+      "status": "succeeded",
+      "created_at": "2026-10-24T10:56:46.011245+00:00",
+      "completed_at": "2026-10-24T10:57:01.137365+00:00",
+      "script": "Travel opens your mind to new cultures and experiences. From the mountains of Nepal to the beaches of Thailand, every destination has a story to tell. Pack your bags and explore the world.",
+      "total_duration": 15.78,
+      "aspect_ratios": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "caption_style": "yellow",
+      "bgm": "ambient",
+      "scene_count": 3,
+      "clips_found": 3,
+      "timeline": [
+        {
+          "scene_index": 0,
+          "narration_text": "Travel opens your mind to new cultures and experiences.",
+          "start_time": 0.0,
+          "end_time": 4.99,
+          "duration": 4.99,
+          "keywords": [
+            "travel",
+            "opens",
+            "mind",
+            "new"
+          ],
+          "matched_query": "travel opens",
+          "clip": {
+            "scene_index": 0,
+            "narration_text": "Travel opens your mind to new cultures and experiences.",
+            "start_time": 0.0,
+            "end_time": 4.99,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #43496",
+            "clip_url": "https://cdn.pixabay.com/video/2020/06/30/43496-434353332_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/ecee990ddeeb/download/thumb_0.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2020/06/30/43496-434353332_tiny.jpg",
+            "attribution": "Footage by ChristianBodhi on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'travel opens'"
+          }
+        },
+        {
+          "scene_index": 1,
+          "narration_text": "From the mountains of Nepal to the beaches of Thailand, every destination has a story to tell.",
+          "start_time": 4.99,
+          "end_time": 11.78,
+          "duration": 6.79,
+          "keywords": [
+            "mountains",
+            "nepal",
+            "beaches",
+            "thailand"
+          ],
+          "matched_query": "mountains nepal",
+          "clip": {
+            "scene_index": 1,
+            "narration_text": "From the mountains of Nepal to the beaches of Thailand, every destination has a story to tell.",
+            "start_time": 4.99,
+            "end_time": 11.78,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #153821",
+            "clip_url": "https://cdn.pixabay.com/video/2023/03/08/153821-806526710_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/ecee990ddeeb/download/thumb_1.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2023/03/08/153821-806526710_tiny.jpg",
+            "attribution": "Footage by dbghale on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'mountains nepal'"
+          }
+        },
+        {
+          "scene_index": 2,
+          "narration_text": "Pack your bags and explore the world.",
+          "start_time": 11.78,
+          "end_time": 15.78,
+          "duration": 4.0,
+          "keywords": [
+            "pack",
+            "bags",
+            "explore",
+            "world"
+          ],
+          "matched_query": "pack bags",
+          "clip": {
+            "scene_index": 2,
+            "narration_text": "Pack your bags and explore the world.",
+            "start_time": 11.78,
+            "end_time": 15.78,
+            "clip_source": "pixabay",
+            "clip_id": "Pixabay #336167",
+            "clip_url": "https://cdn.pixabay.com/video/2026/02/23/336167_medium.mp4",
+            "thumbnail": "/api/v1/broll/jobs/ecee990ddeeb/download/thumb_2.jpg",
+            "preview_image": "https://cdn.pixabay.com/video/2026/02/23/336167_tiny.jpg",
+            "attribution": "Footage by miukia_aki on Pixabay",
+            "licence": "Pixabay Licence (Free for commercial use)",
+            "relevance_score": 5.0,
+            "selection_reason": "Visual match: 'pack bags'"
+          }
+        }
+      ],
+      "models": {
+        "tts": "edge-tts / en-AU-NatashaNeural",
+        "vision": "Exact Semantic Visual Action Mapping & CLIP compatible",
+        "asr": "Local Whisper sentence alignment"
+      },
+      "providers": {
+        "stock_footage": "Pixabay Video API v2 (Commercial License)",
+        "tts_provider": "Microsoft Cognitive Neural Voices",
+        "renderer": "FFmpeg libx264/AAC"
+      },
+      "timings": {
+        "total_sec": 15.13,
+        "narration_sec": 15.78,
+        "render_sec": 15.13
+      },
+      "cost_estimate_usd": 0.0,
+      "licence_summary": "100% Commercial Use Clean. Pixabay License (Attribution recorded per clip, no watermarks, safe for monetization).",
+      "output_files": {
+        "video_16x9.mp4": "http://localhost:8000/api/v1/broll/jobs/ecee990ddeeb/download/video_16x9.mp4",
+        "video_9x16.mp4": "http://localhost:8000/api/v1/broll/jobs/ecee990ddeeb/download/video_9x16.mp4",
+        "video_1x1.mp4": "http://localhost:8000/api/v1/broll/jobs/ecee990ddeeb/download/video_1x1.mp4",
+        "narration.mp3": "http://localhost:8000/api/v1/broll/jobs/ecee990ddeeb/download/narration.mp3",
+        "captions.srt": "http://localhost:8000/api/v1/broll/jobs/ecee990ddeeb/download/captions.srt"
+      },
+      "engine": {
+        "tts": "edge-tts / en-AU-NatashaNeural",
+        "footage": "Pixabay API v2 (Clean Commercial License)",
+        "scoring": "Exact Semantic Visual Action Mapping",
+        "assembly": "FFmpeg Concat Demuxer + Subtitle Burn + BGM Ducking",
+        "version": "1.2.0"
+      },
+      "metrics": {
+        "turnaround_sec": 15.13,
+        "cost_per_min": "$0.00 (License-Clean Free APIs)",
+        "coverage_pct": 100.0,
+        "reliability": "100% (No repeating clips, negative tag filter active)"
+      }
+    },
+    "manifest_url": "/api/v1/broll/jobs/ecee990ddeeb/manifest"
+  },
+  "status": "succeeded",
+  "elapsed_sec": 15.82
+}
