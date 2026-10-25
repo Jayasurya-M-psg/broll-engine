@@ -159,19 +159,19 @@
     /* Main Studio Grid Layout */
     .studio-wrapper {
       width: 100%;
-      max-width: 1440px;
-      margin: 24px auto 0;
-      padding: 0 28px;
+      max-width: 1780px;
+      margin: 18px auto 0;
+      padding: 0 24px;
       position: relative;
       z-index: 1;
     }
     .studio-grid {
       display: grid;
-      grid-template-columns: minmax(520px, 580px) 1fr;
+      grid-template-columns: minmax(620px, 720px) 1fr;
       gap: 28px;
       align-items: start;
     }
-    @media (max-width: 1180px) {
+    @media (max-width: 1280px) {
       .studio-grid { grid-template-columns: 1fr; }
     }
 
@@ -1570,59 +1570,72 @@
       display: flex !important;
       flex-direction: row !important;
       align-items: center;
-      gap: 12px;
-      padding: 10px;
-      background: #0d1322;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 10px;
+      gap: 16px;
+      padding: 14px 16px;
+      background: #0c1220;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
     }
     .scene-card:hover {
       transform: translateY(-2px);
       border-color: #818cf8;
-      background: #131b30;
-      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.25);
+      background: #121a2e;
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
     }
     .scene-card.active-scene {
       border-color: #38bdf8 !important;
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.45), 0 0 0 1.5px rgba(56, 189, 248, 0.6) !important;
+      box-shadow: 0 0 24px rgba(56, 189, 248, 0.55), 0 0 0 2px rgba(56, 189, 248, 0.8) !important;
       background: #14223d !important;
     }
     .scene-thumb-container {
-      width: 145px !important;
-      height: 84px !important;
-      min-height: 84px !important;
+      width: 230px !important;
+      height: 130px !important;
+      min-height: 130px !important;
       flex-shrink: 0 !important;
-      border-radius: 7px;
+      border-radius: 9px;
       overflow: hidden;
       position: relative;
       background: #060911;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
     }
     .scene-body {
       flex: 1;
       min-width: 0;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 8px;
       padding: 0 !important;
     }
     .scene-narration {
-      font-size: 0.80rem;
-      font-weight: 500;
-      color: #f1f5f9;
-      line-height: 1.35;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.48;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
+    }
+    .timeline-scroll-container {
+      max-height: calc(100vh - 190px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      scroll-behavior: smooth;
     }
     .studio-right {
       position: sticky;
       top: 20px;
+      align-self: start;
     }
-    @media (max-width: 1100px) {
+    @media (max-width: 1280px) {
       .studio-grid {
         grid-template-columns: 1fr;
       }
@@ -6123,15 +6136,12 @@ Stay curious, keep learning, and remember: understanding technology today can he
           </div>
         </div>
 
-      </div>
-
-      <!-- ============================================== -->
-        </div>
-
         <!-- 3. CAPTIONS & SPECS PANEL (TOGGLEABLE) -->
         <div id="left-panel-captions" style="display: none; flex-direction: column; gap: 20px;">
-
         </div>
+
+      </div>
+      <!-- Closes studio-left column -->
       </div>
 
       <!-- RIGHT COLUMN: Video Player & Scene Timeline    -->
@@ -6162,8 +6172,13 @@ Stay curious, keep learning, and remember: understanding technology today can he
             </div>
           </div>
 
-          <div class="player-viewport" id="player-viewport">
-            <video id="main-player" src="assets/video_16x9.mp4" poster="assets/thumb_0.jpg" controls autoplay playsinline preload="auto" style="display: block; width: 100%;">
+          <div class="player-viewport" id="player-viewport" style="position: relative;">
+            <!-- Floating Unmute Audio Banner -->
+            <div id="unmute-banner" onclick="toggleMuteVideo()" style="position: absolute; top: 22px; right: 24px; z-index: 25; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px); border: 1.5px solid rgba(56, 189, 248, 0.6); border-radius: 999px; padding: 7px 16px; font-size: 0.82rem; font-weight: 700; color: #38bdf8; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.7); transition: all 0.2s ease;">
+              <span>🔊</span>
+              <span>Click to Unmute Audio</span>
+            </div>
+            <video id="main-player" src="assets/video_16x9.mp4" poster="assets/thumb_0.jpg" controls autoplay muted playsinline preload="auto" style="display: block; width: 100%; border-radius: 12px; box-shadow: 0 16px 48px rgba(0,0,0,0.85);">
               Your browser does not support the video tag.
             </video>
             <!-- Floating Seek HUD Badge -->
@@ -7456,7 +7471,26 @@ Stay curious, keep learning, and remember: understanding technology today can he
     updateCount();
 
     // Auto-load latest completed job or from URL query ?job_id=
+    function toggleMuteVideo(btn) {
+      const p = document.getElementById('main-player');
+      const banner = document.getElementById('unmute-banner');
+      if (!p) return;
+      p.muted = !p.muted;
+      if (!p.muted) {
+        if (banner) banner.style.display = 'none';
+        if (btn) { btn.innerHTML = '🔊 Audio On'; btn.style.color = '#38bdf8'; }
+      } else {
+        if (banner) banner.style.display = 'flex';
+        if (btn) { btn.innerHTML = '🔇 Unmute'; btn.style.color = '#34d399'; }
+      }
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
+      const autoPlayer = document.getElementById('main-player');
+      if (autoPlayer) {
+        autoPlayer.muted = true;
+        autoPlayer.play().catch(e => console.log('Autoplay restriction:', e));
+      }
       // Preload script from SHOWCASE_MANIFEST matching user's first screenshot
       const scriptInput = document.getElementById('script-input');
       if (scriptInput) {
