@@ -159,7 +159,7 @@
     /* Main Studio Grid Layout */
     .studio-wrapper {
       width: 100%;
-      max-width: 1780px;
+      max-width: 1880px;
       margin: 18px auto 0;
       padding: 0 24px;
       position: relative;
@@ -167,11 +167,11 @@
     }
     .studio-grid {
       display: grid;
-      grid-template-columns: minmax(620px, 720px) 1fr;
+      grid-template-columns: minmax(700px, 840px) 1fr;
       gap: 28px;
       align-items: start;
     }
-    @media (max-width: 1280px) {
+    @media (max-width: 1360px) {
       .studio-grid { grid-template-columns: 1fr; }
     }
 
@@ -1234,32 +1234,33 @@
       gap: 8px;
     }
     .scene-number-badge {
-      font-size: 0.7rem;
+      font-size: 0.82rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      background: rgba(139, 92, 246, 0.16);
+      background: rgba(139, 92, 246, 0.22);
       color: #c4b5fd;
-      padding: 2px 8px;
-      border-radius: var(--radius-sm);
+      padding: 4px 11px;
+      border-radius: 6px;
     }
     .scene-timestamp {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.74rem;
-      color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.04);
-      padding: 2px 7px;
-      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 3px 9px;
+      border-radius: 6px;
     }
     .scene-duration-pill {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      font-weight: 700;
+      font-size: 0.80rem;
+      font-weight: 800;
       color: #22d3ee;
-      background: rgba(6, 182, 212, 0.1);
-      padding: 2px 8px;
+      background: rgba(6, 182, 212, 0.16);
+      padding: 3px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(6, 182, 212, 0.25);
+      border: 1.5px solid rgba(6, 182, 212, 0.4);
     }
     .scene-narration {
       font-size: 0.9rem;
@@ -1274,12 +1275,12 @@
       align-items: center;
     }
     .kw-tag {
-      font-size: 0.7rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 2px 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+      padding: 3px 10px;
       color: #a5b4fc;
     }
     .clip-details-row {
@@ -1570,51 +1571,51 @@
       display: flex !important;
       flex-direction: row !important;
       align-items: center;
-      gap: 16px;
-      padding: 14px 16px;
+      gap: 18px;
+      padding: 16px 18px;
       background: #0c1220;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
+      border: 1.5px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
     .scene-card:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
       border-color: #818cf8;
-      background: #121a2e;
-      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
+      background: #131c32;
+      box-shadow: 0 10px 28px rgba(99, 102, 241, 0.35);
     }
     .scene-card.active-scene {
       border-color: #38bdf8 !important;
-      box-shadow: 0 0 24px rgba(56, 189, 248, 0.55), 0 0 0 2px rgba(56, 189, 248, 0.8) !important;
-      background: #14223d !important;
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.65), 0 0 0 2.5px #38bdf8 !important;
+      background: #142442 !important;
     }
     .scene-thumb-container {
-      width: 230px !important;
-      height: 130px !important;
-      min-height: 130px !important;
+      width: 280px !important;
+      height: 158px !important;
+      min-height: 158px !important;
       flex-shrink: 0 !important;
-      border-radius: 9px;
+      border-radius: 10px;
       overflow: hidden;
       position: relative;
       background: #060911;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65);
     }
     .scene-body {
       flex: 1;
       min-width: 0;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
       padding: 0 !important;
     }
     .scene-narration {
-      font-size: 0.98rem;
+      font-size: 1.05rem;
       font-weight: 600;
       color: #ffffff;
-      line-height: 1.48;
+      line-height: 1.5;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
