@@ -2505,9 +2505,24 @@
       if (placeholder) placeholder.style.display = 'none';
       const player = document.getElementById('main-player');
       player.style.display = 'block';
+      player.poster = isShowcase ? 'assets/thumb_0.jpg' : `${apiBase}/api/v1/broll/jobs/${jobId}/download/thumb_0.jpg`;
       player.src = videoUrl;
       player.className = aspect === '9:16' ? 'portrait' : (aspect === '1:1' ? 'square' : '');
-      player.play().catch(() => {});
+
+      // Autoplay: attempt with sound, if restricted by browser policy fallback to muted autoplay so visual playback begins immediately
+      const playPromise = player.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          player.muted = true;
+          player.play().catch(() => {});
+        });
+      }
+      const viewport = document.getElementById('player-viewport');
+      if (viewport) {
+        viewport.addEventListener('click', () => {
+          if (player.muted) player.muted = false;
+        }, { once: true });
+      }
 
       document.getElementById('download-btn').href = videoUrl;
       document.getElementById('download-btn').download = `video_ai_${currentRatio}.mp4`;
