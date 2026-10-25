@@ -78,6 +78,14 @@ class BrollJobRequest(BaseModel):
     captions: Optional[CaptionsConfig] = Field(
         default_factory=CaptionsConfig
     )
+    speech_rate: Optional[str] = Field(
+        "-15%",
+        description="TTS speaking rate, e.g. '-15%', '-20%', '+0%'. Controls pacing to increase video duration."
+    )
+    min_scene_duration: Optional[float] = Field(
+        3.5,
+        description="Minimum duration in seconds for each scene clip."
+    )
 
     class Config:
         json_schema_extra = {
@@ -144,9 +152,13 @@ class OutputLinks(BaseModel):
     video_16_9: Optional[str] = None
     video_9_16: Optional[str] = None
     video_1_1: Optional[str] = None
+    video_16x9: Optional[str] = None
+    video_9x16: Optional[str] = None
+    video_1x1: Optional[str] = None
     captions_srt: Optional[str] = None
     timeline_json: Optional[str] = None
     manifest_json: Optional[str] = None
+    model_config = {"extra": "allow"}
 
 
 class JobStatusResponse(BaseModel):

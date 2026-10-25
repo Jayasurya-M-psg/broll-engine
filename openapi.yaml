@@ -41,6 +41,25 @@ paths:
                   uptime_sec:
                     type: number
 
+  /health:
+    get:
+      summary: "Liveness probe"
+      operationId: health
+      tags: [health]
+      responses:
+        "200":
+          description: "Process is alive"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ok"
+                  uptime_sec:
+                    type: number
+
   /ready:
     get:
       summary: "Readiness probe — checks Redis and MinIO"

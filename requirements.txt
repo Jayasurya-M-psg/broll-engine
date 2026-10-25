@@ -19,7 +19,7 @@ minio==7.2.9
 openai-whisper==20231117
 
 # TTS
-edge-tts==6.1.10
+edge-tts>=7.0.0
 
 # NLP / Query generation
 keybert==0.8.5

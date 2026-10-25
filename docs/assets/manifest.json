@@ -1,0 +1,178 @@
+{
+  "job_id": "ee4b7d85b136",
+  "status": "succeeded",
+  "created_at": "2026-10-24T06:23:15.280181+00:00",
+  "completed_at": "2026-10-24T06:24:26.890490+00:00",
+  "script": "Success doesn't happen overnight; it comes from small actions repeated every day.\nStop waiting for the perfect moment and start working toward your goals today.\nStay disciplined, believe in yourself, and never let failure stop you.\nEvery small step brings you closer to your dreams.\nRemember, your future depends on what you do today.",
+  "total_duration": 24.71,
+  "aspect_ratios": [
+    "16:9"
+  ],
+  "scene_count": 5,
+  "clips_found": 5,
+  "timeline": [
+    {
+      "scene_index": 0,
+      "narration_text": "Success doesn't happen overnight; it comes from small actions repeated every day.",
+      "start_time": 0.0,
+      "end_time": 5.95,
+      "duration": 5.95,
+      "keywords": [
+        "success",
+        "happen",
+        "overnight",
+        "comes"
+      ],
+      "matched_query": "hiker mountain summit sunrise",
+      "clip": {
+        "scene_index": 0,
+        "narration_text": "Success doesn't happen overnight; it comes from small actions repeated every day.",
+        "start_time": 0.0,
+        "end_time": 5.95,
+        "clip_source": "pixabay",
+        "clip_id": "Pixabay #214394",
+        "clip_url": "https://cdn.pixabay.com/video/2024/05/29/214394_medium.mp4",
+        "thumbnail": "/api/v1/broll/jobs/ee4b7d85b136/download/thumb_0.jpg",
+        "preview_image": "https://cdn.pixabay.com/video/2020/03/11/33565-397143924_tiny.jpg",
+        "attribution": "Video by xBriantcx on Pixabay",
+        "licence": "Pixabay Licence (Free for commercial use)",
+        "relevance_score": 5.0,
+        "selection_reason": "Manually chosen in Studio Clip Swapper"
+      }
+    },
+    {
+      "scene_index": 1,
+      "narration_text": "Stop waiting for the perfect moment and start working toward your goals today.",
+      "start_time": 5.95,
+      "end_time": 11.06,
+      "duration": 5.11,
+      "keywords": [
+        "stop",
+        "waiting",
+        "perfect",
+        "moment"
+      ],
+      "matched_query": "person working laptop typing focus",
+      "clip": {
+        "scene_index": 1,
+        "narration_text": "Stop waiting for the perfect moment and start working toward your goals today.",
+        "start_time": 5.95,
+        "end_time": 11.06,
+        "clip_source": "pixabay",
+        "clip_id": "Pixabay #10822",
+        "clip_url": "https://cdn.pixabay.com/video/2017/07/23/10822-226624975_medium.mp4",
+        "thumbnail": "/api/v1/broll/jobs/ee4b7d85b136/download/thumb_1.jpg",
+        "preview_image": "https://cdn.pixabay.com/video/2017/07/23/10822-226624975_tiny.jpg",
+        "attribution": "Footage by Coverr-Free-Footage on Pixabay",
+        "licence": "Pixabay Licence (Free for commercial use)",
+        "relevance_score": 5.0,
+        "selection_reason": "Visual match: 'person working laptop typing focus'"
+      }
+    },
+    {
+      "scene_index": 2,
+      "narration_text": "Stay disciplined, believe in yourself, and never let failure stop you.",
+      "start_time": 11.06,
+      "end_time": 16.46,
+      "duration": 5.4,
+      "keywords": [
+        "stay",
+        "disciplined",
+        "believe",
+        "never"
+      ],
+      "matched_query": "athlete workout training gym",
+      "clip": {
+        "scene_index": 2,
+        "narration_text": "Stay disciplined, believe in yourself, and never let failure stop you.",
+        "start_time": 11.06,
+        "end_time": 16.46,
+        "clip_source": "pixabay",
+        "clip_id": "Pixabay #293085",
+        "clip_url": "https://cdn.pixabay.com/video/2025/07/23/293085_medium.mp4",
+        "thumbnail": "/api/v1/broll/jobs/ee4b7d85b136/download/thumb_2.jpg",
+        "preview_image": "https://cdn.pixabay.com/video/2025/07/23/293085_tiny.jpg",
+        "attribution": "Footage by RainMeditateHub on Pixabay",
+        "licence": "Pixabay Licence (Free for commercial use)",
+        "relevance_score": 5.0,
+        "selection_reason": "Visual match: 'athlete workout training gym'"
+      }
+    },
+    {
+      "scene_index": 3,
+      "narration_text": "Every small step brings you closer to your dreams.",
+      "start_time": 16.46,
+      "end_time": 20.51,
+      "duration": 4.05,
+      "keywords": [
+        "step",
+        "brings",
+        "closer",
+        "dreams"
+      ],
+      "matched_query": "walking trail footsteps mountain hiking",
+      "clip": {
+        "scene_index": 3,
+        "narration_text": "Every small step brings you closer to your dreams.",
+        "start_time": 16.46,
+        "end_time": 20.51,
+        "clip_source": "pixabay",
+        "clip_id": "Pixabay #282995",
+        "clip_url": "https://cdn.pixabay.com/video/2025/06/01/282995_medium.mp4",
+        "thumbnail": "/api/v1/broll/jobs/ee4b7d85b136/download/thumb_3.jpg",
+        "preview_image": "https://cdn.pixabay.com/video/2025/06/01/282995_tiny.jpg",
+        "attribution": "Footage by Matthias_Groeneveld on Pixabay",
+        "licence": "Pixabay Licence (Free for commercial use)",
+        "relevance_score": 5.0,
+        "selection_reason": "Visual match: 'walking trail footsteps mountain hiking'"
+      }
+    },
+    {
+      "scene_index": 4,
+      "narration_text": "Remember, your future depends on what you do today.",
+      "start_time": 20.51,
+      "end_time": 24.71,
+      "duration": 4.2,
+      "keywords": [
+        "remember",
+        "future",
+        "depends",
+        "today"
+      ],
+      "matched_query": "sunrise horizon person cliff",
+      "clip": {
+        "scene_index": 4,
+        "narration_text": "Remember, your future depends on what you do today.",
+        "start_time": 20.51,
+        "end_time": 24.71,
+        "clip_source": "pixabay",
+        "clip_id": "Pixabay #246391",
+        "clip_url": "https://cdn.pixabay.com/video/2024/12/12/246391_medium.mp4",
+        "thumbnail": "/api/v1/broll/jobs/ee4b7d85b136/download/thumb_4.jpg",
+        "preview_image": "https://cdn.pixabay.com/video/2024/12/12/246391_tiny.jpg",
+        "attribution": "Footage by thedog777 on Pixabay",
+        "licence": "Pixabay Licence (Free for commercial use)",
+        "relevance_score": 5.0,
+        "selection_reason": "Visual match: 'sunrise horizon person cliff'"
+      }
+    }
+  ],
+  "output_files": {
+    "video_16x9.mp4": "/api/v1/broll/jobs/ee4b7d85b136/download/video_16x9.mp4",
+    "video_9x16.mp4": "/api/v1/broll/jobs/ee4b7d85b136/download/video_9x16.mp4",
+    "captions.srt": "/api/v1/broll/jobs/ee4b7d85b136/download/captions.srt"
+  },
+  "engine": {
+    "tts": "edge-tts / en-US-JennyNeural",
+    "footage": "Pixabay API v2 (Clean Commercial License)",
+    "scoring": "Exact Semantic Match + Relevance Ranking",
+    "assembly": "FFmpeg Concat Demuxer + Subtitles Burn",
+    "version": "1.0.0"
+  },
+  "metrics": {
+    "turnaround_sec": 71.61,
+    "cost_per_min": "$0.00 (License-Clean Free APIs)",
+    "coverage_pct": 100.0,
+    "reliability": "100% (No repeating clips)"
+  }
+}

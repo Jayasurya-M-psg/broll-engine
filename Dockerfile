@@ -29,6 +29,7 @@ RUN pip install --no-cache-dir "setuptools<81" wheel
 RUN pip install --no-cache-dir \
     torch==2.3.1+cpu \
     torchaudio==2.3.1+cpu \
+    torchvision==0.18.1+cpu \
     --index-url https://download.pytorch.org/whl/cpu
 
 RUN pip install --no-cache-dir --no-build-isolation -r requirements.txt

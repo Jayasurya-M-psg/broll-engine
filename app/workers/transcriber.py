@@ -169,7 +169,7 @@ def _split_on_sentences(
 # TTS — generate audio from plain text
 # ---------------------------------------------------------------------------
 
-async def generate_tts(script: str, voice: str, output_path: str) -> float:
+async def generate_tts(script: str, voice: str, output_path: str, rate: Optional[str] = None) -> float:
     """
     Generate speech from *script* using the configured TTS engine.
 
@@ -177,10 +177,11 @@ async def generate_tts(script: str, voice: str, output_path: str) -> float:
     Supports: 'edge' (edge-tts), 'espeak', 'coqui'
     """
     engine = settings.TTS_ENGINE
+    rate_val = rate or getattr(settings, "TTS_RATE", "-15%")
 
     if engine == "edge":
         try:
-            return await _tts_edge(script, voice, output_path)
+            return await _tts_edge(script, voice, output_path, rate=rate_val)
         except Exception as exc:
             log.warning("edge-tts failed, falling back to espeak-ng", error=str(exc))
             return _tts_espeak(script, voice, output_path)
@@ -188,33 +189,66 @@ async def generate_tts(script: str, voice: str, output_path: str) -> float:
         return _tts_espeak(script, voice, output_path)
     else:
         try:
-            return await _tts_edge(script, voice, output_path)
+            return await _tts_edge(script, voice, output_path, rate=rate_val)
         except Exception as exc:
             log.warning("edge-tts failed, falling back to espeak-ng", error=str(exc))
             return _tts_espeak(script, voice, output_path)
 
 
-async def _tts_edge(script: str, voice: str, output_path: str) -> float:
+async def _tts_edge(script: str, voice: str, output_path: str, rate: str = "-15%") -> float:
     """edge-tts: Microsoft neural voices, free, no API key needed."""
     try:
         import edge_tts  # type: ignore
         import asyncio
+        import subprocess
     except ImportError:
         raise TranscriptionError("edge-tts is not installed. Run: pip install edge-tts")
 
-    # Map simple voice names like "en+f3" to Edge TTS neural voices
+    # Map simple voice names like "en+f3", "en-us" to Edge TTS neural voices
     voice_map = {
         "en+f3": "en-US-JennyNeural",
         "en+m1": "en-US-GuyNeural",
+        "en-us": "en-US-JennyNeural",
+        "en-gb": "en-GB-SoniaNeural",
+        "en": "en-US-JennyNeural",
+        "female": "en-US-JennyNeural",
+        "male": "en-US-GuyNeural",
         "hi": "hi-IN-SwaraNeural",
         "ta": "ta-IN-PallaviNeural",
+        "technology": "en-US-JennyNeural",
         "en-US-JennyNeural": "en-US-JennyNeural",
+        "en-US-GuyNeural": "en-US-GuyNeural",
     }
-    mapped = voice_map.get(voice, voice if "-Neural" in voice else settings.TTS_DEFAULT_VOICE)
+    mapped = voice_map.get(voice.lower() if voice else "", voice if "-Neural" in (voice or "") else settings.TTS_DEFAULT_VOICE)
 
-    log.info("Generating TTS with edge-tts", voice=mapped)
-    communicate = edge_tts.Communicate(script, mapped)
-    await communicate.save(output_path)
+    last_err = None
+    for attempt in range(3):
+        try:
+            log.info("Generating clean neural TTS with edge-tts", voice=mapped, rate=rate, attempt=attempt+1)
+            communicate = edge_tts.Communicate(script, mapped, rate=rate)
+            await communicate.save(output_path)
+            last_err = None
+            break
+        except Exception as exc:
+            last_err = exc
+            log.warning("edge-tts connection retry", attempt=attempt+1, error=str(exc))
+            await asyncio.sleep(1.0)
+    if last_err is not None:
+        raise last_err
+
+    # Master audio to clean broadcast standard (-16 LUFS, highpass to remove mic/system rumble)
+    try:
+        temp_clean = output_path + ".mastered.mp3"
+        subprocess.run([
+            "ffmpeg", "-y", "-i", output_path,
+            "-af", "highpass=f=80,lowpass=f=12000,loudnorm=I=-16:TP=-1.5:LRA=11",
+            "-c:a", "libmp3lame", "-b:a", "192k",
+            temp_clean
+        ], check=True, capture_output=True)
+        os.replace(temp_clean, output_path)
+        log.info("Audio mastered with loudnorm & broadcast EQ", path=output_path)
+    except Exception as exc:
+        log.warning("Audio mastering filter skipped", error=str(exc))
 
     # Get duration via ffprobe
     return _get_audio_duration(output_path)
@@ -289,6 +323,7 @@ async def process_audio_input(
     script: Optional[str],
     voice: str,
     work_dir: str,
+    speech_rate: Optional[str] = None,
 ) -> Tuple[str, List[TranscriptSegment], float]:
     """
     Accepts either an audio URL or a plain-text script.
@@ -302,10 +337,10 @@ async def process_audio_input(
     if audio_url:
         audio_path = _download_audio(audio_url, work_dir)
     else:
-        # Generate TTS from script
+        # Generate TTS from script with configured speech_rate pacing
         audio_path = os.path.join(work_dir, "tts_audio.mp3")
-        duration = await generate_tts(script, voice, audio_path)
-        log.info("TTS audio generated", path=audio_path, duration_sec=round(duration, 2))
+        duration = await generate_tts(script, voice, audio_path, rate=speech_rate)
+        log.info("TTS audio generated", path=audio_path, duration_sec=round(duration, 2), speech_rate=speech_rate)
 
     # Transcribe
     try:
@@ -324,6 +359,14 @@ async def process_audio_input(
             segments.append(TranscriptSegment(s, round(cursor, 2), round(cursor + d, 2)))
             cursor += d
         duration = max(duration, cursor)
+
+    # Align transcribed segments with original script text for exact punctuation & spelling
+    if script and segments:
+        import re
+        orig_sentences = [s.strip() for s in re.split(r'(?<=[.!?])\s+', script) if s.strip()]
+        if len(orig_sentences) == len(segments):
+            for i, sent in enumerate(orig_sentences):
+                segments[i].text = sent
 
     log.info("Transcript ready", n_segments=len(segments), duration_sec=round(duration, 2))
     return audio_path, segments, duration

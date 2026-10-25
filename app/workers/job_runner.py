@@ -25,6 +25,7 @@ from app.workers import (
     footage_fetcher,
     clip_selector,
     video_assembler,
+    ai_scene_producer,
 )
 from app.storage import minio_client
 
@@ -114,6 +115,9 @@ async def run_broll_job(job_id: str, request_data: Dict[str, Any]) -> None:
         burn_in = captions_cfg.get("burn_in", False)
         srt_enabled = captions_cfg.get("srt", True)
 
+        speech_rate = request_data.get("speech_rate")
+        min_scene_dur = float(request_data.get("min_scene_duration") or getattr(settings, "MIN_SCENE_DURATION_SEC", 3.5))
+
         # ------------------------------------------------------------------
         # Step 1: Transcription / TTS
         # ------------------------------------------------------------------
@@ -123,6 +127,7 @@ async def run_broll_job(job_id: str, request_data: Dict[str, Any]) -> None:
             script=script,
             voice=voice,
             work_dir=work_dir,
+            speech_rate=speech_rate,
         )
 
         # Override segments if user provided scenes
@@ -156,42 +161,61 @@ async def run_broll_job(job_id: str, request_data: Dict[str, Any]) -> None:
             queries = query_generator.make_queries(seg.text, style=style, n_queries=3)
             log.debug("Scene queries", scene=i, queries=queries)
 
-            # Try each query until we find a good non-duplicate clip
-            best_clip: Optional[footage_fetcher.RawClip] = None
-            best_rating: float = 1.0
-            best_reason: str = ""
+            # Collect candidate clips across all high-intent queries
+            all_candidates: List[footage_fetcher.RawClip] = []
+            seen_cand_ids: Set[str] = set()
 
             for q in queries:
                 try:
-                    candidates = await footage_fetcher.fetch_candidates(
+                    cands = await footage_fetcher.fetch_candidates(
                         query=q,
                         avoid=avoid,
                         aspect_ratio=primary_ratio,
                         work_dir=work_dir,
                         per_source=8,
                     )
-                    selected, rating, reason = clip_selector.select_best_clip(
-                        seg.text, candidates, used_clip_ids
-                    )
-                    if selected and rating > best_rating:
-                        best_clip = selected
-                        best_rating = rating
-                        best_reason = reason
-                        if rating >= 3.0:
-                            break  # good enough
+                    for c in cands:
+                        if c.clip_id not in seen_cand_ids:
+                            seen_cand_ids.add(c.clip_id)
+                            all_candidates.append(c)
                 except FootageSourceError:
                     warnings.append(f"Scene {i}: footage source failed for query '{q}'")
                     continue
 
-            if best_clip is None:
-                warnings.append(f"Scene {i}: no clip found, using black frame fallback")
-                scene_clip_urls.append("__BLACK__")
-            else:
-                used_clip_ids.add(best_clip.clip_id)
-                scene_clip_urls.append(best_clip.clip_url)
+            # Select the single best non-duplicate clip using CLIP vision-language scoring
+            best_clip, best_rating, best_reason = clip_selector.select_best_clip(
+                seg.text, all_candidates, used_clip_ids
+            )
+
+            # User requirement: If CLIP score/rating is less than 4, use the AI produced correct scene
+            orig_rating = best_rating
+            if best_clip is None or orig_rating < settings.CLIP_MIN_RATING_THRESHOLD:
+                log.info(
+                    "CLIP rating below threshold, using AI produced correct scene",
+                    scene=i,
+                    stock_rating=orig_rating,
+                    threshold=settings.CLIP_MIN_RATING_THRESHOLD,
+                    text=seg.text[:50],
+                )
+                ai_clip = ai_scene_producer.produce_ai_scene(
+                    narration_text=seg.text,
+                    duration=seg.end - seg.start,
+                    aspect_ratio=primary_ratio,
+                    work_dir=work_dir,
+                    scene_index=i,
+                )
+                best_clip = ai_clip
+                best_rating = 5.0
+                best_reason = (
+                    f"Stock candidate score was {orig_rating:.1f}/5.0 (< {settings.CLIP_MIN_RATING_THRESHOLD}) -> "
+                    f"used AI produced correct scene: {ai_clip.attribution}"
+                )
+
+            used_clip_ids.add(best_clip.clip_id)
+            scene_clip_urls.append(best_clip.clip_url)
 
             scene_dur = seg.end - seg.start
-            scene_durations.append(max(0.5, scene_dur))
+            scene_durations.append(max(min_scene_dur, scene_dur))
 
             # Record in timeline
             clip_record = ClipRecord(
@@ -304,10 +328,12 @@ async def run_broll_job(job_id: str, request_data: Dict[str, Any]) -> None:
 
         outputs: Dict[str, str] = {}
         for ratio, vid_path in output_videos.items():
-            ratio_key = ratio.replace(":", "x")
-            obj_name = f"{job_id}/video_{ratio_key}.mp4"
+            ratio_x = ratio.replace(":", "x")
+            ratio_under = ratio.replace(":", "_")
+            obj_name = f"{job_id}/video_{ratio_x}.mp4"
             url = minio_client.upload_file(vid_path, obj_name)
-            outputs[f"video_{ratio_key}"] = url
+            outputs[f"video_{ratio_under}"] = url
+            outputs[f"video_{ratio_x}"] = url
 
         if srt_path:
             url = minio_client.upload_file(srt_path, f"{job_id}/captions.srt")

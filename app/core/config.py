@@ -70,12 +70,15 @@ class Settings(BaseSettings):
     # -------------------------------------------------------------------------
     TTS_ENGINE: str = "edge"      # edge | espeak | coqui
     TTS_DEFAULT_VOICE: str = "en-US-JennyNeural"
+    TTS_RATE: str = "-15%"        # Narration pacing rate (increases video duration based on script)
+    MIN_SCENE_DURATION_SEC: float = 3.5
 
     # -------------------------------------------------------------------------
     # CLIP relevance scoring
     # -------------------------------------------------------------------------
     CLIP_MODEL: str = "openai/clip-vit-base-patch32"
     CLIP_ENABLED: bool = True
+    CLIP_MIN_RATING_THRESHOLD: float = 4.0
 
     # -------------------------------------------------------------------------
     # Video output

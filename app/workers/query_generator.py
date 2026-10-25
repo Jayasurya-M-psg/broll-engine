@@ -45,50 +45,105 @@ _SAFE_QUERY_MAP = {
 }
 
 
+# Domain-specific phrase maps for accurate B-roll footage retrieval
+_PHRASE_NORMALIZATION = {
+    "self-driving cars": "self driving car",
+    "self-driving car": "self driving car",
+    "autonomous cars": "autonomous car",
+    "smart assistants": "smart assistant",
+    "smart assistant": "smart assistant",
+    "artificial intelligence": "artificial intelligence",
+    "complex problems": "technology problem solving",
+    "people and machines": "robot human collaboration",
+    "work together": "teamwork office",
+    "new technology": "future technology",
+    "keep learning": "technology learning",
+    "saving money": "saving money",
+    "tracking every expense": "budget expense tracking",
+    "unnecessary subscription": "mobile subscription digital",
+    "small steps": "stepping forward journey",
+    "big savings": "piggy bank savings coins",
+    "digital transformation": "business team collaboration technology",
+    "digital products": "business team collaboration technology",
+    "digital solutions": "business team collaboration technology",
+    "business solutions": "business team collaboration technology",
+    "online presence": "digital technology connection network",
+    "software development": "software developer coding laptop",
+    "web development": "web developer coding website",
+    "web design": "web design responsive laptop",
+    "hosting solutions": "data center server racks",
+    "server solutions": "data center server racks",
+    "hosting services": "data center server racks",
+    "cloud-based": "cloud productivity business team",
+    "cloud computing": "cloud computing server network",
+    "user experience": "ui ux interface computer",
+    "custom software": "software developer coding laptop",
+    "inventory management": "dashboard analytics interface screen",
+    "customer management": "dashboard analytics interface screen",
+    "data analytics": "data analytics dashboard computer",
+    "cyber security": "cyber security technology server",
+    "smart city": "modern digital smart city technology",
+}
+
 def make_queries(
     text: str,
     style: Optional[str] = None,
-    n_queries: int = 3,
+    n_queries: int = 4,
 ) -> List[str]:
     """
     Extract the top *n_queries* search queries from *text*.
-
-    Strategy:
-      1. Try KeyBERT for semantic multi-word keyphrases
-      2. Fall back to spaCy noun-chunk extraction
-      3. Ultimate fallback: simple regex word extraction
+    Returns high-intent, stock-video-optimized search terms.
     """
     text_clean = _clean_text(text)
-    style_suffix = f" {style}" if style else ""
-
+    text_lower = text_clean.lower()
     queries: List[str] = []
 
-    # Try KeyBERT
+    # 1. Match known high-intent compound phrases
+    for phrase, target in _PHRASE_NORMALIZATION.items():
+        if phrase in text_lower and target not in queries:
+            queries.append(target)
+
+    # 2. Extract using KeyBERT
     try:
-        queries = _keybert_queries(text_clean, n_queries)
+        kb = _keybert_queries(text_clean, n_queries)
+        for q in kb:
+            if q not in queries:
+                queries.append(q)
     except Exception as exc:
         log.debug("KeyBERT unavailable", error=str(exc))
 
-    # Fall back to spaCy
-    if not queries:
-        try:
-            queries = _spacy_queries(text_clean, n_queries)
-        except Exception as exc:
-            log.debug("spaCy unavailable", error=str(exc))
+    # 3. Extract using spaCy
+    try:
+        sp = _spacy_queries(text_clean, n_queries)
+        for q in sp:
+            if q not in queries:
+                queries.append(q)
+    except Exception as exc:
+        log.debug("spaCy unavailable", error=str(exc))
 
-    # Ultimate fallback
+    # 4. Fallback if needed
     if not queries:
         queries = _simple_queries(text_clean, n_queries)
+
+    # 5. Add style-enhanced query if style provided (e.g. "technology", "finance")
+    if style and queries:
+        primary = queries[0]
+        if style.lower() not in primary.lower():
+            queries.append(f"{primary} {style.strip()}")
 
     # Apply safety map
     safe_queries = [_apply_safe_map(q) for q in queries]
 
-    # Append style suffix to first query
-    if safe_queries:
-        safe_queries[0] = safe_queries[0] + style_suffix
+    # Deduplicate while preserving order
+    seen: set = set()
+    result = []
+    for q in safe_queries:
+        if q not in seen:
+            seen.add(q)
+            result.append(q)
 
-    log.debug("Generated queries", text_snippet=text[:50], queries=safe_queries)
-    return safe_queries
+    log.debug("Generated queries", text_snippet=text[:50], queries=result[:n_queries])
+    return result[:n_queries]
 
 
 def _clean_text(text: str) -> str:
@@ -106,18 +161,29 @@ def _apply_safe_map(query: str) -> str:
     return query
 
 
-def _keybert_queries(text: str, n: int) -> List[str]:
-    from keybert import KeyBERT  # type: ignore
+_KEYBERT_MODEL = None
+_KEYBERT_FAILED = False
 
-    kw_model = KeyBERT()
-    keywords = kw_model.extract_keywords(
-        text,
-        keyphrase_ngram_range=(1, 3),
-        stop_words="english",
-        top_n=n,
-        diversity=0.7,
-    )
-    return [kw for kw, score in keywords if kw.lower() not in _STOPWORDS]
+def _keybert_queries(text: str, n: int) -> List[str]:
+    global _KEYBERT_MODEL, _KEYBERT_FAILED
+    if _KEYBERT_FAILED:
+        return []
+    try:
+        if _KEYBERT_MODEL is None:
+            from keybert import KeyBERT  # type: ignore
+            _KEYBERT_MODEL = KeyBERT()
+        keywords = _KEYBERT_MODEL.extract_keywords(
+            text,
+            keyphrase_ngram_range=(1, 3),
+            stop_words="english",
+            top_n=n,
+            diversity=0.7,
+        )
+        return [kw for kw, score in keywords if kw.lower() not in _STOPWORDS]
+    except Exception as e:
+        log.debug("KeyBERT unavailable, falling back to spaCy", error=str(e))
+        _KEYBERT_FAILED = True
+        return []
 
 
 def _spacy_queries(text: str, n: int) -> List[str]:

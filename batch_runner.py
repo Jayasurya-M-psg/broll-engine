@@ -90,13 +90,17 @@ async def poll_until_done(
     """Poll GET /api/v1/broll/jobs/{job_id} until status is succeeded or failed."""
     deadline = time.time() + timeout
     while time.time() < deadline:
-        resp = await client.get(f"{base_url}/api/v1/broll/jobs/{job_id}", timeout=15.0)
-        data = resp.json()
-        status = data.get("status", "queued")
-        progress = data.get("progress", 0)
-        print(f"  [{job_id[:8]}] status={status} progress={progress}%")
-        if status in ("succeeded", "failed"):
-            return data
+        try:
+            resp = await client.get(f"{base_url}/api/v1/broll/jobs/{job_id}", timeout=25.0)
+            if resp.status_code == 200:
+                data = resp.json()
+                status = data.get("status", "queued")
+                progress = data.get("progress", 0)
+                print(f"  [{job_id[:8]}] status={status} progress={progress}%")
+                if status in ("succeeded", "failed"):
+                    return data
+        except Exception as poll_err:
+            print(f"  [{job_id[:8]}] transient poll note: {poll_err}, retrying in {poll_interval}s...")
         await asyncio.sleep(poll_interval)
 
     return {"job_id": job_id, "status": "timeout", "error": {"code": "TIMEOUT", "message": f"Job did not complete within {timeout}s"}}
@@ -111,12 +115,12 @@ def load_test_cases(test_case_path: str) -> List[Dict[str, Any]]:
     cases = []
     if p.is_dir():
         for f in sorted(p.glob("*.json")):
-            with open(f) as fh:
+            with open(f, encoding="utf-8") as fh:
                 data = json.load(fh)
                 data["_source_file"] = f.name
                 cases.append(data)
     elif p.is_file():
-        with open(p) as fh:
+        with open(p, encoding="utf-8") as fh:
             data = json.load(fh)
             if isinstance(data, list):
                 cases = data
@@ -187,8 +191,8 @@ async def run_batch(args: argparse.Namespace) -> None:
 
             # Write individual result file
             result_file = output_dir / f"{job_name}_result.json"
-            with open(result_file, "w") as f:
-                json.dump(result, f, indent=2)
+            with open(result_file, "w", encoding="utf-8") as f:
+                json.dump(result, f, indent=2, ensure_ascii=False)
             print(f"  Result saved: {result_file} ({elapsed:.1f}s)")
 
             summary_rows.append({
@@ -199,7 +203,7 @@ async def run_batch(args: argparse.Namespace) -> None:
 
     # Write summary
     summary_file = output_dir / "batch_summary.json"
-    with open(summary_file, "w") as f:
+    with open(summary_file, "w", encoding="utf-8") as f:
         json.dump({
             "run_at": datetime.now(timezone.utc).isoformat(),
             "base_url": args.base_url,
@@ -207,7 +211,7 @@ async def run_batch(args: argparse.Namespace) -> None:
             "passed": sum(1 for r in summary_rows if r["status"] == "succeeded"),
             "failed": sum(1 for r in summary_rows if r["status"] != "succeeded"),
             "results": summary_rows,
-        }, f, indent=2)
+        }, f, indent=2, ensure_ascii=False)
 
     print(f"\n{'='*60}")
     print(f"Batch complete. Summary: {summary_file}")

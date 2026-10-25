@@ -167,7 +167,14 @@ async def _search_pixabay(
                 continue
 
             user = hit.get("user", "Unknown")
-            preview = hit.get("userImageURL") or chosen.get("thumbnail", "")
+            preview = (
+                hit.get("videos", {}).get("tiny", {}).get("thumbnail")
+                or chosen.get("thumbnail")
+                or hit.get("userImageURL")
+                or ""
+            )
+            tags_list = [t.strip().lower() for t in hit.get("tags", "").split(",") if t.strip()]
+
             clips.append(RawClip(
                 source="pixabay",
                 clip_id=f"pixabay_{hit['id']}",
@@ -178,6 +185,7 @@ async def _search_pixabay(
                 width=chosen.get("width", 1280),
                 height=chosen.get("height", 720),
                 duration=float(hit.get("duration", 0)),
+                tags=tags_list,
             ))
 
         log.info("Pixabay results", query=query, count=len(clips))

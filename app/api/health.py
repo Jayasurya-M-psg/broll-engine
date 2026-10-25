@@ -18,6 +18,7 @@ _start_time = time.time()
 
 
 @router.get("/healthz", summary="Liveness probe")
+@router.get("/health", summary="Liveness probe")
 async def healthz() -> Any:
     """Returns 200 if the process is alive."""
     return {"status": "ok", "uptime_sec": round(time.time() - _start_time, 1)}

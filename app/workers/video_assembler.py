@@ -64,7 +64,10 @@ def _fmt_timecode(secs: float) -> str:
 def _download_clip(url: str, dest: str) -> bool:
     """Download video from URL; return True on success."""
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "BrollEngine/1.0"})
+        req = urllib.request.Request(
+            url,
+            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
+        )
         with urllib.request.urlopen(req, timeout=30) as resp, open(dest, "wb") as f:
             f.write(resp.read())
         log.debug("Clip downloaded", url=url[:80], size=os.path.getsize(dest))
@@ -246,6 +249,9 @@ def download_clips_for_scenes(
     """Download all selected clip URLs and return list of local paths."""
     local_paths: List[str] = []
     for idx, url in enumerate(scene_clip_urls):
+        if url and os.path.isfile(url):
+            local_paths.append(url)
+            continue
         dest = os.path.join(work_dir, f"raw_clip_{idx:03d}.mp4")
         ok = _download_clip(url, dest)
         if not ok:

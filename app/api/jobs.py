@@ -229,6 +229,31 @@ async def swap_clip(job_id: str, scene_index: int) -> Any:
     })
 
 
+@router.get(
+    "/jobs/{job_id}/download/{filename}",
+    summary="Direct download or stream job artifact",
+)
+async def download_artifact(job_id: str, filename: str) -> Any:
+    """Stream video or artifact directly from MinIO with proper content-type."""
+    from app.storage.minio_client import get_client, _guess_content_type
+    from fastapi.responses import StreamingResponse
+    import io
+    client = get_client()
+    try:
+        response = client.get_object(settings.MINIO_BUCKET, f"{job_id}/{filename}")
+        data = response.read()
+        response.close()
+        response.release_conn()
+        content_type = _guess_content_type(f".{filename.split('.')[-1]}")
+        return StreamingResponse(
+            io.BytesIO(data),
+            media_type=content_type,
+            headers={"Content-Disposition": f'inline; filename="{filename}"'}
+        )
+    except Exception as exc:
+        return error_response("FILE_NOT_FOUND", f"Artifact {filename!r} not found: {exc}", status_code=404)
+
+
 # ---------------------------------------------------------------------------
 # Internal helpers
 # ---------------------------------------------------------------------------
